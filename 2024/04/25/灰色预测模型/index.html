@@ -31,11 +31,12 @@
 <meta property="og:image" content="https://isjmm.github.io/blog_image/2024_4_25_2.png">
 <meta property="og:image" content="https://isjmm.github.io/blog_image/2024_4_25_3.png">
 <meta property="og:image" content="https://isjmm.github.io/blog_image/2024_4_25_4.png">
+<meta property="og:image" content="https://isjmm.github.io/blog_image/2024_4_25_5.png">
 <meta property="article:published_time" content="2024-04-25T07:46:00.000Z">
-<meta property="article:modified_time" content="2024-04-25T14:07:16.290Z">
+<meta property="article:modified_time" content="2024-04-25T16:19:51.494Z">
 <meta property="article:author" content="RookieL">
 <meta property="article:tag" content="algorithm">
-<meta property="article:tag" content="Modling">
+<meta property="article:tag" content="Modeling">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://isjmm.github.io/blog_image/2024_4_25_1.png">
 
@@ -194,10 +195,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2024-04-25 15:46:00 / Modified: 22:07:16" itemprop="dateCreated datePublished" datetime="2024-04-25T15:46:00+08:00">2024-04-25</time>
+              <time title="Created: 2024-04-25 15:46:00" itemprop="dateCreated datePublished" datetime="2024-04-25T15:46:00+08:00">2024-04-25</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2024-04-26 00:19:51" itemprop="dateModified" datetime="2024-04-26T00:19:51+08:00">2024-04-26</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -214,14 +221,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.5k</span>
+              <span>3.6k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
+              <span>3 mins.</span>
             </span>
 
         </div>
@@ -298,8 +305,73 @@ sign(\frac{\sigma_i}{\sigma_n}) = -sign(\frac{\sigma_j}{\sigma_n})</script><p>�
 <p>最优的是 第 1 位， 最差的是第 4 位，通过这样就可很清晰得出结论，做出相应得判断</p>
 </li>
 </ol>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文介绍了灰色相关性分析，给出了一个案例，运用灰度关联分析得到对应的结果。</p>
-
+<h2 id="二、灰色生成数列"><a href="#二、灰色生成数列" class="headerlink" title="二、灰色生成数列"></a>二、灰色生成数列</h2><p>将不具有规律性的数据通过变换生成有一定规律性的过程</p>
+<h2 id="累加生成"><a href="#累加生成" class="headerlink" title="累加生成"></a>累加生成</h2><p>把数列各项（时刻）数据依次累加的过程称为累加生成， 就是利用前缀和思想进行累加，相当于积分</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+&x^{(0)} = (x^{(0)}(1), ..., x^{(0)}(n)) \\
+&x^{(1)}(k) = \sum_{i = 1}^{k}x^{(0)}(i) \\
+&x^{(1)} = (x^{(1)}(1), ..., x^{(1)}(n)) \\ 
+\end{align*}</script><p>这是一次累加的结果，可以多次进行相同的操作得到<code>r</code>次累加的结果</p>
+<h2 id="累减生成"><a href="#累减生成" class="headerlink" title="累减生成"></a>累减生成</h2><p>把数列各项（时刻）数据依次累加的过程称为累加生成过程<br>由累加生成过程所得的数列称为<br>累加生成数列。</p>
+<p>原始数列为 ：</p>
+<script type="math/tex; mode=display">
+x^{(0)} = (x^{(0)}(1), ..., x^{(0)}(n)</script><p>生成得数列为：</p>
+<script type="math/tex; mode=display">
+x^{(0)}(k) = x^{(1)}(k) - x^{(1)}(k - 1) (k = 2, 3, ...)</script><p>称所得到的数列$x^{(0)}$为$x^{(1)}$的次累减生成数列。</p>
+<h2 id="加权邻值生成"><a href="#加权邻值生成" class="headerlink" title="加权邻值生成"></a>加权邻值生成</h2><p>原始数列为 ：</p>
+<script type="math/tex; mode=display">
+x^{(0)} = (x^{(0)}(1), ..., x^{(0)}(n)</script><p>对于 $\alpha\in[0, 1]$<br>令 </p>
+<script type="math/tex; mode=display">
+z^{(0)}(k) = \alpha x^{(0)}(k) - (1 - \alpha)x^{(0)}(k - 1) (k = 2, 3, ...)</script><p>特别的，当 $\alpha$ = 0.5 时，生成得数列称为等权邻值生成数  </p>
+<h2 id="累减数列的求导性质"><a href="#累减数列的求导性质" class="headerlink" title="累减数列的求导性质"></a>累减数列的求导性质</h2><script type="math/tex; mode=display">
+\frac{dx(k)}{dt} = \lim_{\Delta t\to 0} \frac{x(k) - x(k - \Delta t)}{\Delta t}</script><p>生成的累减数列相当于 $\Delta t = 1$</p>
+<h2 id="GM-1-1-灰色模型-G-gray-灰色，-M-model-模型"><a href="#GM-1-1-灰色模型-G-gray-灰色，-M-model-模型" class="headerlink" title="GM(1, 1)灰色模型 (G gray 灰色， M model 模型)"></a>GM(1, 1)灰色模型 (G gray 灰色， M model 模型)</h2><h3 id="模型建立过程"><a href="#模型建立过程" class="headerlink" title="模型建立过程"></a>模型建立过程</h3><p>设 $x^{(0)} = (x^{(0)}(1), …, x^{(0)}(n)$  </p>
+<p>一次累计生成数列是 $x^{(1)} = (x^{(1)}(1), …, x^{(1)}(n)$  </p>
+<p>定义<strong>灰导数</strong>是 $d(k) = x^{(0)}(k) = x^{(1)}(k) - x^{(1)}(k - 1)$</p>
+<p>令 $z^{(1)}(k) = \alpha x^{(1)}(k) + (1 - \alpha) x^{(1)}(k - 1)$ </p>
+<p>于是定义<code>GM(1, 1)</code>灰微分方程模型 </p>
+<script type="math/tex; mode=display">
+\begin{align*}
+&d(k) + \alpha  z^{(1)}(k) = b \\
+即或\quad &x^{(0)}(k) + \alpha  z^{(1)}(k) = b
+\end{align*}</script><p>式子中$\quad$$x^{(0)}$表示灰导数，<code>a</code>表示发展系数，$z^{(1)}(k)$白化背景值, <code>b</code>称为灰作用量</p>
+<p>将时刻表 <code>k = 2, 3, ...</code>带入式子中得到</p>
+<script type="math/tex; mode=display">
+\begin{dcases}
+x^{(0)}(2) + \alpha  z^{(1)}(2) = b \\
+x^{(0)}(3) + \alpha  z^{(1)}(3) = b \\
+.................... \\
+x^{(0)}(n) + \alpha  z^{(1)}(n) = b
+\end{dcases}</script><p>用矩阵表示<br><img src="/blog_image/2024_4_25_5.png" alt="alt text"></p>
+<p>于是<code>GM(1, 1)</code>模型可以表示为$Y = Bu$<br>所以现在归结与求<code>a</code>和<code>b</code>的值<br>可以使用最小二乘法来求解<br>$\hat{u}$ = $(B^{T}B^{-1})B^{T}Y$</p>
+<h2 id="建立GM-1-1-灰色预测的步骤"><a href="#建立GM-1-1-灰色预测的步骤" class="headerlink" title="建立GM(1, 1)灰色预测的步骤"></a>建立GM(1, 1)灰色预测的步骤</h2><ol>
+<li><p>数据的检验与处理<br>为了保证用<code>GM(1, 1)</code>模型的可行性,要计算数据的<strong>级比</strong></p>
+<script type="math/tex; mode=display">\lambda = \frac{x^{(0)}(k - 1)}{x^{(0)}(k)}</script><p>如果在覆盖区间 $X = (e^{\frac{-2}{n + 1}}, e^{\frac{2}{n + 1}})$ </p>
+<p>此时就可以用这个模型，如果不在，则要进行平移变换，也就是数据同时加上或者减去一个数字，使级比在区间范围之内</p>
+<script type="math/tex; mode=display">
+y^{(0)}(k) = x^{(0)}(k) + c</script><p><strong>注意</strong> : 如果加上了一个数，那么最后的结果要减去这个数字，要不然不准确</p>
+</li>
+<li><p>建立<code>GM(1, 1)</code>模型</p>
+<p>$x^{(0)}(k) + \alpha  z^{(1)}(k) = b$ </p>
+<p>利用最小二乘法得到a和b的值，于是得到白化模型</p>
+<script type="math/tex; mode=display">
+\frac{dx(t)}{dt} + \alpha  z^{(1)}(k) = b</script><p>解得</p>
+<script type="math/tex; mode=display">
+{x}^{(1)}(t) = (x^{(0)}(1) - \frac{b}{a})e^{-a(t - 1)} + \frac{b}{a}</script><p>于是得到预测值</p>
+<script type="math/tex; mode=display">
+\hat{x}^{(1)}(k + 1) = (x^{(0)}(1) - \frac{b}{a})e^{-ak} + \frac{b}{a}</script><p>相应的得到相应的预测值</p>
+<script type="math/tex; mode=display">
+\hat{x}^{(0)}(k + 1) = \hat{x}^{(1)}(k + 1) - \hat{x}^{(1)}(k)</script></li>
+<li>检验预测值</li>
+<li>方法一：残差检验<script type="math/tex; mode=display">
+\varepsilon(k) = \frac{x^{(0)}(k) - \hat{x}^{(0)}(k)}{x^{(0)}(k)}</script>要满足<script type="math/tex; mode=display">
+|\varepsilon| \le 0.2</script>方法二：级比偏差值检验<script type="math/tex; mode=display">
+\rho(k) = 1 - \frac{1 - 0.5a}{1+ 0.5a}\lambda(k)</script>要满足 <script type="math/tex; mode=display">
+|\rho(k)| \le 0.2</script></li>
+</ol>
+<p>这样就成功建立了GM(1, 1)模型，可以用这个模型进行预测，分析</p>
+<h2 id="案例分析-SARS病毒对城市经济的影响"><a href="#案例分析-SARS病毒对城市经济的影响" class="headerlink" title="案例分析 SARS病毒对城市经济的影响"></a>案例分析 SARS病毒对城市经济的影响</h2>
     </div>
 
     
@@ -309,7 +381,7 @@ sign(\frac{\sigma_i}{\sigma_n}) = -sign(\frac{\sigma_j}{\sigma_n})</script><p>�
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/algorithm/" rel="tag"># algorithm</a>
-              <a href="/tags/Modling/" rel="tag"># Modling</a>
+              <a href="/tags/Modeling/" rel="tag"># Modeling</a>
           </div>
 
         
@@ -380,7 +452,7 @@ sign(\frac{\sigma_i}{\sigma_n}) = -sign(\frac{\sigma_j}{\sigma_n})</script><p>�
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%81%B0%E8%89%B2%E9%A2%84%E6%B5%8B%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%9A%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text">灰色预测模型的基本定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%81%B0%E8%89%B2%E9%A2%84%E6%B5%8B%E7%9A%84%E5%B8%B8%E8%A7%81%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">灰色预测的常见类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E7%81%B0%E8%89%B2%E5%85%B3%E8%81%94%E5%BA%A6%E5%88%86%E6%9E%90"><span class="nav-number">3.</span> <span class="nav-text">一. 灰色关联度分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4"><span class="nav-number">3.1.</span> <span class="nav-text">步骤</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90"><span class="nav-number">4.</span> <span class="nav-text">案例分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%81%B0%E8%89%B2%E9%A2%84%E6%B5%8B%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%9A%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text">灰色预测模型的基本定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%81%B0%E8%89%B2%E9%A2%84%E6%B5%8B%E7%9A%84%E5%B8%B8%E8%A7%81%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">灰色预测的常见类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E7%81%B0%E8%89%B2%E5%85%B3%E8%81%94%E5%BA%A6%E5%88%86%E6%9E%90"><span class="nav-number">3.</span> <span class="nav-text">一. 灰色关联度分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4"><span class="nav-number">3.1.</span> <span class="nav-text">步骤</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90"><span class="nav-number">4.</span> <span class="nav-text">案例分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E7%81%B0%E8%89%B2%E7%94%9F%E6%88%90%E6%95%B0%E5%88%97"><span class="nav-number">5.</span> <span class="nav-text">二、灰色生成数列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B4%AF%E5%8A%A0%E7%94%9F%E6%88%90"><span class="nav-number">6.</span> <span class="nav-text">累加生成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B4%AF%E5%87%8F%E7%94%9F%E6%88%90"><span class="nav-number">7.</span> <span class="nav-text">累减生成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A0%E6%9D%83%E9%82%BB%E5%80%BC%E7%94%9F%E6%88%90"><span class="nav-number">8.</span> <span class="nav-text">加权邻值生成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B4%AF%E5%87%8F%E6%95%B0%E5%88%97%E7%9A%84%E6%B1%82%E5%AF%BC%E6%80%A7%E8%B4%A8"><span class="nav-number">9.</span> <span class="nav-text">累减数列的求导性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GM-1-1-%E7%81%B0%E8%89%B2%E6%A8%A1%E5%9E%8B-G-gray-%E7%81%B0%E8%89%B2%EF%BC%8C-M-model-%E6%A8%A1%E5%9E%8B"><span class="nav-number">10.</span> <span class="nav-text">GM(1, 1)灰色模型 (G gray 灰色， M model 模型)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E5%BB%BA%E7%AB%8B%E8%BF%87%E7%A8%8B"><span class="nav-number">10.1.</span> <span class="nav-text">模型建立过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8BGM-1-1-%E7%81%B0%E8%89%B2%E9%A2%84%E6%B5%8B%E7%9A%84%E6%AD%A5%E9%AA%A4"><span class="nav-number">11.</span> <span class="nav-text">建立GM(1, 1)灰色预测的步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90-SARS%E7%97%85%E6%AF%92%E5%AF%B9%E5%9F%8E%E5%B8%82%E7%BB%8F%E6%B5%8E%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="nav-number">12.</span> <span class="nav-text">案例分析 SARS病毒对城市经济的影响</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -443,12 +515,12 @@ sign(\frac{\sigma_i}{\sigma_n}) = -sign(\frac{\sigma_j}{\sigma_n})</script><p>�
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">2k</span>
+    <span title="Symbols count total">4k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">2 mins.</span>
+    <span title="Reading time total">4 mins.</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
   </div>
