@@ -162,6 +162,113 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://isjmm.github.io/2024/04/26/2024-4-26-LC1146%E5%BF%AB%E7%85%A7%E6%95%B0%E7%BB%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="RookieL">
+      <meta itemprop="description" content="简单的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RookieL的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/04/26/2024-4-26-LC1146%E5%BF%AB%E7%85%A7%E6%95%B0%E7%BB%84/" class="post-title-link" itemprop="url">2024_4_26_LC1146快照数组</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2024-04-26 22:58:07 / Modified: 22:58:59" itemprop="dateCreated datePublished" datetime="2024-04-26T22:58:07+08:00">2024-04-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LC/" itemprop="url" rel="index"><span itemprop="name">LC</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>2.4k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1146-快照数组"><a href="#1146-快照数组" class="headerlink" title="1146. 快照数组"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/snapshot-array/">1146. 快照数组</a></h2><p>难度: <font color = gold> 中等 </font></p>
+<p>题目描述：</p>
+<blockquote>
+<p>实现支持下列接口的「快照数组」- SnapshotArray：</p>
+<ul>
+<li><code>SnapshotArray(int length)</code> - 初始化一个与指定长度相等的 类数组 的数据结构。<strong>初始时，每个元素都等于</strong> <strong>0</strong>。</li>
+<li><code>void set(index, val)</code> - 会将指定索引 <code>index</code> 处的元素设置为 <code>val</code>。</li>
+<li><code>int snap()</code> - 获取该数组的快照，并返回快照的编号 <code>snap_id</code>（快照号是调用 <code>snap()</code> 的总次数减去 <code>1</code>）。</li>
+<li><code>int get(index, snap_id)</code> - 根据指定的 <code>snap_id</code> 选择快照，并返回该快照指定索引 <code>index</code> 的值。</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">输入：[&quot;SnapshotArray&quot;,&quot;set&quot;,&quot;snap&quot;,&quot;set&quot;,&quot;get&quot;]</span><br><span class="line">     [[3],[0,5],[],[0,6],[0,0]]</span><br><span class="line">输出：[null,null,0,null,5]</span><br><span class="line">解释：</span><br><span class="line">SnapshotArray snapshotArr = new SnapshotArray(3); // 初始化一个长度为 3 的快照数组</span><br><span class="line">snapshotArr.set(0,5);  // 令 array[0] = 5</span><br><span class="line">snapshotArr.snap();  // 获取快照，返回 snap_id = 0</span><br><span class="line">snapshotArr.set(0,6);</span><br><span class="line">snapshotArr.get(0,0);  // 获取 snap_id = 0 的快照中 array[0] 的值，返回 5</span><br></pre></td></tr></table></figure>
+<p>数据范围：</p>
+<ul>
+<li><code>1 &lt;= length &lt;= 50000</code></li>
+<li>题目最多进行<code>50000</code> 次<code>set</code>，<code>snap</code>，和 <code>get</code>的调用 。</li>
+<li><code>0 &lt;= index &lt; length</code></li>
+<li><code>0 &lt;= snap_id &lt;</code>我们调用 <code>snap()</code> 的总次数</li>
+<li><code>0 &lt;= val &lt;= 10^9</code></li>
+</ul>
+</blockquote>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>只需要在变化的时候进行存储即可，这样可以节省内存，我们直接开一个哈希表<code>unordered_map&lt;int, vector&lt;pair&lt;int, int&gt;&gt;&gt;</code>对应下标<code>index</code>，把每次变化的值都存到里面即可，之后根据下标进行二分查找，找到最右边的修改值就行</p>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">SnapshotArray</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">SnapshotArray</span>(<span class="type">int</span> length): <span class="built_in">snap_cnt</span>(<span class="number">0</span>), <span class="built_in">data</span>(length) &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">set</span><span class="params">(<span class="type">int</span> index, <span class="type">int</span> val)</span> </span>&#123;</span><br><span class="line">        data[index].<span class="built_in">emplace_back</span>(snap_cnt, val);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">snap</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> snap_cnt++;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">get</span><span class="params">(<span class="type">int</span> index, <span class="type">int</span> snap_id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">auto</span> x = <span class="built_in">upper_bound</span>(data[index].<span class="built_in">begin</span>(), data[index].<span class="built_in">end</span>(), pair&#123;snap_id + <span class="number">1</span>, <span class="number">-1</span>&#125;);</span><br><span class="line">        <span class="keyword">return</span> x == data[index].<span class="built_in">begin</span>() ? <span class="number">0</span> : <span class="built_in">prev</span>(x)-&gt;second;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span> snap_cnt;</span><br><span class="line">    vector&lt;vector&lt;pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt;&gt;&gt; data;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="每个快照只存一次"><a href="#每个快照只存一次" class="headerlink" title="每个快照只存一次"></a>每个快照只存一次</h3><p>根据索引的最后一个元素的<code>first</code>也就是<code>snap_count</code>和当前的<code>snap_count_cur</code>（代码中使用的是<code>cnt</code>）进行比较，如果是相同的，那么说明是在同一个snap，如果不相等，那么说明已经到了下一个snap，此时我们要向这个下标<code>push_back</code>一个新的pair,表示<code>&#123;latest_snap, val&#125;</code>，这样每个<code>snap</code>就存了<code>1</code>个，之后进行二分查找即可</p>
+<h3 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">SnapshotArray</span> &#123;</span><br><span class="line">    <span class="keyword">using</span> PII = pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt;;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="type">int</span> cnt;</span><br><span class="line">    vector&lt;vector&lt;PII&gt;&gt; grid;</span><br><span class="line">    <span class="built_in">SnapshotArray</span>(<span class="type">int</span> length) &#123;</span><br><span class="line">        grid = vector&lt;vector&lt;PII&gt;&gt;(length);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; length; i ++) &#123;</span><br><span class="line">            grid[i].<span class="built_in">push_back</span>(<span class="built_in">make_pair</span>(<span class="number">0</span>, <span class="number">0</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        cnt = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">set</span><span class="params">(<span class="type">int</span> index, <span class="type">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!cnt) &#123;</span><br><span class="line">            grid[index][<span class="number">0</span>] = &#123;<span class="number">0</span>, val&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (cnt != grid[index].<span class="built_in">back</span>().first) &#123;</span><br><span class="line">                grid[index].<span class="built_in">emplace_back</span>(cnt, val);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                grid[index].<span class="built_in">back</span>().second = val;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">snap</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> cnt ++;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">get</span><span class="params">(<span class="type">int</span> index, <span class="type">int</span> snap_id)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> l = <span class="number">0</span>, r = grid[index].<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (l &lt; r) &#123;</span><br><span class="line">            <span class="type">int</span> mid = l + r + <span class="number">1</span> &gt;&gt; <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span> (grid[index][mid].first &lt;= snap_id) l = mid;</span><br><span class="line">            <span class="keyword">else</span> r = mid - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> grid[index][l].second;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>结束了</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://isjmm.github.io/2024/04/25/%E7%81%B0%E8%89%B2%E9%A2%84%E6%B5%8B%E6%A8%A1%E5%9E%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -877,7 +984,7 @@ y^{(0)}(k) = x^{(0)}(k) + c</script><p><strong>注意</strong> : 如果加上了
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -926,12 +1033,12 @@ y^{(0)}(k) = x^{(0)}(k) + c</script><p><strong>注意</strong> : 如果加上了
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">4k</span>
+    <span title="Symbols count total">7k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">4 mins.</span>
+    <span title="Reading time total">6 mins.</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
   </div>
