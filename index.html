@@ -162,6 +162,140 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://isjmm.github.io/2024/04/28/%E4%B8%80%E7%BB%B4%E4%BA%8C%E7%BB%B4%E6%8F%92%E5%80%BC%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%E5%8F%8A%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="RookieL">
+      <meta itemprop="description" content="简单的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RookieL的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/04/28/%E4%B8%80%E7%BB%B4%E4%BA%8C%E7%BB%B4%E6%8F%92%E5%80%BC%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%E5%8F%8A%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90/" class="post-title-link" itemprop="url">一维二维插值算法原理及案例分析</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2024-04-28 23:36:01" itemprop="dateCreated datePublished" datetime="2024-04-28T23:36:01+08:00">2024-04-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2024-04-29 00:18:25" itemprop="dateModified" datetime="2024-04-29T00:18:25+08:00">2024-04-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" itemprop="url" rel="index"><span itemprop="name">数学建模</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.7k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="拉格朗日插值法"><a href="#拉格朗日插值法" class="headerlink" title="拉格朗日插值法"></a>拉格朗日插值法</h2><p>节点上给出节点基函数，<br>然后做基函数的线性组合，<br>组合系数为节点函数值的一种插值多项式。</p>
+<p>就是每次让函数经过一个点，并且经过这个定的时候纵坐标是<code>1</code>，经过这个点的同时其他函数的纵坐标都是<code>0</code>，每个已知的点都这么处理，最后可以得到一个多项式，类似于离散数学中的主析取范式的思想</p>
+<p>例如<br><img src="image.png" alt="alt text"></p>
+<h2 id="高次插值的Runge现象"><a href="#高次插值的Runge现象" class="headerlink" title="高次插值的Runge现象"></a>高次插值的Runge现象</h2><p>插值多项式的次数超过七时，<br>插值多项式会出现严重的振荡现象，称之为<code>Runge</code>现象。<br><img src="image-1.png" alt="alt text"></p>
+<h2 id="如何避免出现振荡现象呢"><a href="#如何避免出现振荡现象呢" class="headerlink" title="如何避免出现振荡现象呢"></a>如何避免出现振荡现象呢</h2><p>将插值区间分成若干小区间，在小区间内用低次(二次，三次)插值，即分段低次插值，如样条函数插值。<br>简单来说就是通过将区间进行分段，每一段分别用低次拟合，这样的方法成为<strong>样条插值</strong><br><img src="image-2.png" alt="alt text"></p>
+<h2 id="Matlab中的插值算法"><a href="#Matlab中的插值算法" class="headerlink" title="Matlab中的插值算法"></a>Matlab中的插值算法</h2><h3 id="一维插值"><a href="#一维插值" class="headerlink" title="一维插值"></a>一维插值</h3><p>命令是$y_i=interp1(x,y,x_i,’method’)$</p>
+<p>$x,y$为插值点，$x_i,y_i$为被插值点和插值结果，$x,y$和$x_i,y_i$通常为向量;</p>
+<ul>
+<li><code>&#39;method&#39;</code>表示插值方法：</li>
+<li><code>&#39;nearest&#39;</code>—最邻近插值，</li>
+<li><code>&#39;linear&#39;</code>—线性插值，</li>
+<li><code>&#39;spline&#39;</code>—三次样条插值，</li>
+<li><code>&#39;cubic&#39;</code>—立方插值，</li>
+<li>缺省为线性插值。</li>
+</ul>
+<p>例如下面的程序<br><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">x=<span class="number">0</span>:<span class="number">2</span>:<span class="number">24</span>;</span><br><span class="line">y=[<span class="number">12</span> <span class="number">9</span> <span class="number">9</span> <span class="number">10</span> <span class="number">18</span> <span class="number">24</span> <span class="number">28</span> <span class="number">27</span> <span class="number">25</span> <span class="number">20</span> <span class="number">18</span> <span class="number">15</span> <span class="number">13</span>];</span><br><span class="line">x1=<span class="number">13</span>;</span><br><span class="line">y1=interp1(x,y,x1,<span class="string">&#x27;spline&#x27;</span>)</span><br><span class="line">xi=<span class="number">0</span>:<span class="number">1</span>/<span class="number">3600</span>:<span class="number">24</span>;</span><br><span class="line">yi=interp1(x,y,xi,<span class="string">&#x27;spline&#x27;</span>);</span><br><span class="line"><span class="built_in">plot</span>(x,y,<span class="string">&#x27;*&#x27;</span>,xi,yi)</span><br></pre></td></tr></table></figure><br><img src="image-3.png" alt="alt text"></p>
+<blockquote>
+<p><code>y1</code>是在<code>x = 13</code>的时候的值，用的是三次样条插值，$x_i$是一个向量，表示从<code>0~24</code>，每个数字的间隔是<code>1/3600</code>,每个点之间很接近，因此图像看着很像是一条曲线，但是其实是一个一个离散的点构成的</p>
+</blockquote>
+<h3 id="二维插值"><a href="#二维插值" class="headerlink" title="二维插值"></a>二维插值</h3><p>$z_i=interp2(x,y,z,x_i,y_i,<br>‘method’)$</p>
+<p>$x,y,z$为插值点，$z$可以理解为被插值函数在$(x,y)$处的值；$x_i,y_i$为被插值点,$z_i$为输出的插值结果，可理解为插值函数在$(x_i,y_i)$处的值；$x,y$为向量，$x_i,y_i$为向量或矩阵，而$z$和$z_i$则为矩阵。<br>类似的：</p>
+<ul>
+<li><code>&#39;method&#39;</code>表示双插值方法：</li>
+<li><code>&#39;nearest&#39;</code>—最邻近插值，</li>
+<li><code>&#39;linear&#39;</code>—双线性插值，</li>
+<li><code>&#39;spline&#39;</code>—双三次样条插值，</li>
+<li><code>&#39;cubic&#39;</code>—双立方插值，</li>
+<li>缺省为双线性插值。</li>
+</ul>
+<p>例子：<br><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">x=<span class="number">1</span>:<span class="number">5</span>;</span><br><span class="line">y=<span class="number">1</span>:<span class="number">3</span>;</span><br><span class="line">temps=</span><br><span class="line">    [</span><br><span class="line">    <span class="number">82</span> <span class="number">81</span> <span class="number">80</span> <span class="number">82</span> <span class="number">84</span>;</span><br><span class="line">    <span class="number">79</span> <span class="number">63</span> <span class="number">61</span> <span class="number">65</span> <span class="number">81</span>;</span><br><span class="line">    <span class="number">84</span> <span class="number">84</span> <span class="number">82</span> <span class="number">85</span> <span class="number">86</span></span><br><span class="line">    ];</span><br><span class="line"><span class="built_in">figure</span>(<span class="number">1</span>);</span><br><span class="line">mesh(x,y,temps);</span><br><span class="line">xi=<span class="number">1</span>:<span class="number">0.2</span>:<span class="number">5</span>;</span><br><span class="line">yi=<span class="number">1</span>:<span class="number">0.2</span>:<span class="number">3</span>;</span><br><span class="line"></span><br><span class="line">zi=interp2(x,y,temps,xi,yi&#x27;,<span class="string">&#x27;cubic&#x27;</span>);</span><br><span class="line"><span class="built_in">figure</span>(<span class="number">2</span>);</span><br><span class="line">mesh(xi,yi,zi);</span><br><span class="line"><span class="built_in">figure</span>(<span class="number">3</span>);</span><br><span class="line">contour(xi,yi,zi,<span class="number">20</span>,<span class="string">&#x27;r&#x27;</span>);</span><br><span class="line">[<span class="built_in">i</span>,<span class="built_in">j</span>] = <span class="built_in">find</span>(zi == <span class="built_in">min</span>(<span class="built_in">min</span>(zi)));</span><br><span class="line">x = xi(<span class="built_in">j</span>),y = yi(<span class="built_in">i</span>),zmin = zi(<span class="built_in">i</span>,<span class="built_in">j</span>)</span><br><span class="line">[<span class="built_in">i</span>,<span class="built_in">j</span>] = <span class="built_in">find</span>(zi == <span class="built_in">max</span>(<span class="built_in">max</span>(zi)));</span><br><span class="line">x = xi(<span class="built_in">j</span>),y = yi(<span class="built_in">i</span>),zmax = zi(<span class="built_in">i</span>,<span class="built_in">j</span>)</span><br></pre></td></tr></table></figure><br>运行结果如下：<br><img src="image-7.png" alt="alt text"><br>图像如下：<br><code>fig3</code><br><img src="image-6.png" alt="alt text"><br><code>fig2</code><br><img src="image-4.png" alt="alt text"><br><code>fig1</code><br><img src="image-5.png" alt="alt text"></p>
+<p>稍微解释一下：</p>
+<ul>
+<li>plot3(空间曲线)</li>
+<li>mesh(空间曲面)</li>
+<li>surf(空间曲面)</li>
+<li>contour(等高线)</li>
+</ul>
+<p><code>mesh</code>和<code>surf</code>的区别是 </p>
+<ul>
+<li><code>mesh</code>画的是曲面网格图，</li>
+<li><p><code>surf</code>画的是曲面表面图。</p>
+</li>
+<li><p><code>contour(x,y,z,n)</code>的功能是作出点<code>(x,y,z)</code>插值而成曲面的<code>n</code>条等高线</p>
+</li>
+<li>用<code>meshc</code>和<code>surfc</code>可在曲面下方画等高线。</li>
+<li><code>meshz</code>和<code>surfz</code>是画垂帘图。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://isjmm.github.io/2024/04/28/LC1017%E8%B4%9F%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1107,7 +1241,7 @@ y^{(0)}(k) = x^{(0)}(k) + c</script><p><strong>注意</strong> : 如果加上了
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1156,12 +1290,12 @@ y^{(0)}(k) = x^{(0)}(k) + c</script><p><strong>注意</strong> : 如果加上了
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">9k</span>
+    <span title="Symbols count total">11k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">8 mins.</span>
+    <span title="Reading time total">10 mins.</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
   </div>

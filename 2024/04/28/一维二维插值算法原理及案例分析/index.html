@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"isjmm.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="拉格朗日插值法节点上给出节点基函数，然后做基函数的线性组合，组合系数为节点函数值的一种插值多项式。 就是每次让函数经过一个点，并且经过这个定的时候纵坐标是1，经过这个点的同时其他函数的纵坐标都是0，每个已知的点都这么处理，最后可以得到一个多项式，类似于离散数学中的主析取范式的思想 例如 高次插值的Runge现象插值多项式的次数超过七时，插值多项式会出现严重的振荡现象，称之为Runge现象。 如何避">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一维二维插值算法原理及案例分析">
+<meta property="og:url" content="https://isjmm.github.io/2024/04/28/%E4%B8%80%E7%BB%B4%E4%BA%8C%E7%BB%B4%E6%8F%92%E5%80%BC%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%E5%8F%8A%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90/index.html">
+<meta property="og:site_name" content="RookieL的个人博客">
+<meta property="og:description" content="拉格朗日插值法节点上给出节点基函数，然后做基函数的线性组合，组合系数为节点函数值的一种插值多项式。 就是每次让函数经过一个点，并且经过这个定的时候纵坐标是1，经过这个点的同时其他函数的纵坐标都是0，每个已知的点都这么处理，最后可以得到一个多项式，类似于离散数学中的主析取范式的思想 例如 高次插值的Runge现象插值多项式的次数超过七时，插值多项式会出现严重的振荡现象，称之为Runge现象。 如何避">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://isjmm.github.io/2024/04/28/%E4%B8%80%E7%BB%B4%E4%BA%8C%E7%BB%B4%E6%8F%92%E5%80%BC%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%E5%8F%8A%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90/image.png">
+<meta property="og:image" content="https://isjmm.github.io/2024/04/28/%E4%B8%80%E7%BB%B4%E4%BA%8C%E7%BB%B4%E6%8F%92%E5%80%BC%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%E5%8F%8A%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90/image-1.png">
+<meta property="og:image" content="https://isjmm.github.io/2024/04/28/%E4%B8%80%E7%BB%B4%E4%BA%8C%E7%BB%B4%E6%8F%92%E5%80%BC%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%E5%8F%8A%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90/image-2.png">
+<meta property="og:image" content="https://isjmm.github.io/2024/04/28/%E4%B8%80%E7%BB%B4%E4%BA%8C%E7%BB%B4%E6%8F%92%E5%80%BC%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%E5%8F%8A%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90/image-3.png">
+<meta property="og:image" content="https://isjmm.github.io/2024/04/28/%E4%B8%80%E7%BB%B4%E4%BA%8C%E7%BB%B4%E6%8F%92%E5%80%BC%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%E5%8F%8A%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90/image-7.png">
+<meta property="og:image" content="https://isjmm.github.io/2024/04/28/%E4%B8%80%E7%BB%B4%E4%BA%8C%E7%BB%B4%E6%8F%92%E5%80%BC%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%E5%8F%8A%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90/image-6.png">
+<meta property="og:image" content="https://isjmm.github.io/2024/04/28/%E4%B8%80%E7%BB%B4%E4%BA%8C%E7%BB%B4%E6%8F%92%E5%80%BC%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%E5%8F%8A%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90/image-4.png">
+<meta property="og:image" content="https://isjmm.github.io/2024/04/28/%E4%B8%80%E7%BB%B4%E4%BA%8C%E7%BB%B4%E6%8F%92%E5%80%BC%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%E5%8F%8A%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90/image-5.png">
+<meta property="article:published_time" content="2024-04-28T15:36:01.000Z">
+<meta property="article:modified_time" content="2024-04-28T16:18:25.239Z">
+<meta property="article:author" content="RookieL">
+<meta property="article:tag" content="algorithm">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://isjmm.github.io/2024/04/28/%E4%B8%80%E7%BB%B4%E4%BA%8C%E7%BB%B4%E6%8F%92%E5%80%BC%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%E5%8F%8A%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90/image.png">
+
+<link rel="canonical" href="https://isjmm.github.io/2024/04/28/%E4%B8%80%E7%BB%B4%E4%BA%8C%E7%BB%B4%E6%8F%92%E5%80%BC%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%E5%8F%8A%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>一维二维插值算法原理及案例分析 | RookieL的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">RookieL的个人博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://isjmm.github.io/2024/04/28/%E4%B8%80%E7%BB%B4%E4%BA%8C%E7%BB%B4%E6%8F%92%E5%80%BC%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%E5%8F%8A%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="RookieL">
+      <meta itemprop="description" content="简单的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RookieL的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          一维二维插值算法原理及案例分析
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2024-04-28 23:36:01" itemprop="dateCreated datePublished" datetime="2024-04-28T23:36:01+08:00">2024-04-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2024-04-29 00:18:25" itemprop="dateModified" datetime="2024-04-29T00:18:25+08:00">2024-04-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" itemprop="url" rel="index"><span itemprop="name">数学建模</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.7k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="拉格朗日插值法"><a href="#拉格朗日插值法" class="headerlink" title="拉格朗日插值法"></a>拉格朗日插值法</h2><p>节点上给出节点基函数，<br>然后做基函数的线性组合，<br>组合系数为节点函数值的一种插值多项式。</p>
+<p>就是每次让函数经过一个点，并且经过这个定的时候纵坐标是<code>1</code>，经过这个点的同时其他函数的纵坐标都是<code>0</code>，每个已知的点都这么处理，最后可以得到一个多项式，类似于离散数学中的主析取范式的思想</p>
+<p>例如<br><img src="image.png" alt="alt text"></p>
+<h2 id="高次插值的Runge现象"><a href="#高次插值的Runge现象" class="headerlink" title="高次插值的Runge现象"></a>高次插值的Runge现象</h2><p>插值多项式的次数超过七时，<br>插值多项式会出现严重的振荡现象，称之为<code>Runge</code>现象。<br><img src="image-1.png" alt="alt text"></p>
+<h2 id="如何避免出现振荡现象呢"><a href="#如何避免出现振荡现象呢" class="headerlink" title="如何避免出现振荡现象呢"></a>如何避免出现振荡现象呢</h2><p>将插值区间分成若干小区间，在小区间内用低次(二次，三次)插值，即分段低次插值，如样条函数插值。<br>简单来说就是通过将区间进行分段，每一段分别用低次拟合，这样的方法成为<strong>样条插值</strong><br><img src="image-2.png" alt="alt text"></p>
+<h2 id="Matlab中的插值算法"><a href="#Matlab中的插值算法" class="headerlink" title="Matlab中的插值算法"></a>Matlab中的插值算法</h2><h3 id="一维插值"><a href="#一维插值" class="headerlink" title="一维插值"></a>一维插值</h3><p>命令是$y_i=interp1(x,y,x_i,’method’)$</p>
+<p>$x,y$为插值点，$x_i,y_i$为被插值点和插值结果，$x,y$和$x_i,y_i$通常为向量;</p>
+<ul>
+<li><code>&#39;method&#39;</code>表示插值方法：</li>
+<li><code>&#39;nearest&#39;</code>—最邻近插值，</li>
+<li><code>&#39;linear&#39;</code>—线性插值，</li>
+<li><code>&#39;spline&#39;</code>—三次样条插值，</li>
+<li><code>&#39;cubic&#39;</code>—立方插值，</li>
+<li>缺省为线性插值。</li>
+</ul>
+<p>例如下面的程序<br><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">x=<span class="number">0</span>:<span class="number">2</span>:<span class="number">24</span>;</span><br><span class="line">y=[<span class="number">12</span> <span class="number">9</span> <span class="number">9</span> <span class="number">10</span> <span class="number">18</span> <span class="number">24</span> <span class="number">28</span> <span class="number">27</span> <span class="number">25</span> <span class="number">20</span> <span class="number">18</span> <span class="number">15</span> <span class="number">13</span>];</span><br><span class="line">x1=<span class="number">13</span>;</span><br><span class="line">y1=interp1(x,y,x1,<span class="string">&#x27;spline&#x27;</span>)</span><br><span class="line">xi=<span class="number">0</span>:<span class="number">1</span>/<span class="number">3600</span>:<span class="number">24</span>;</span><br><span class="line">yi=interp1(x,y,xi,<span class="string">&#x27;spline&#x27;</span>);</span><br><span class="line"><span class="built_in">plot</span>(x,y,<span class="string">&#x27;*&#x27;</span>,xi,yi)</span><br></pre></td></tr></table></figure><br><img src="image-3.png" alt="alt text"></p>
+<blockquote>
+<p><code>y1</code>是在<code>x = 13</code>的时候的值，用的是三次样条插值，$x_i$是一个向量，表示从<code>0~24</code>，每个数字的间隔是<code>1/3600</code>,每个点之间很接近，因此图像看着很像是一条曲线，但是其实是一个一个离散的点构成的</p>
+</blockquote>
+<h3 id="二维插值"><a href="#二维插值" class="headerlink" title="二维插值"></a>二维插值</h3><p>$z_i=interp2(x,y,z,x_i,y_i,<br>‘method’)$</p>
+<p>$x,y,z$为插值点，$z$可以理解为被插值函数在$(x,y)$处的值；$x_i,y_i$为被插值点,$z_i$为输出的插值结果，可理解为插值函数在$(x_i,y_i)$处的值；$x,y$为向量，$x_i,y_i$为向量或矩阵，而$z$和$z_i$则为矩阵。<br>类似的：</p>
+<ul>
+<li><code>&#39;method&#39;</code>表示双插值方法：</li>
+<li><code>&#39;nearest&#39;</code>—最邻近插值，</li>
+<li><code>&#39;linear&#39;</code>—双线性插值，</li>
+<li><code>&#39;spline&#39;</code>—双三次样条插值，</li>
+<li><code>&#39;cubic&#39;</code>—双立方插值，</li>
+<li>缺省为双线性插值。</li>
+</ul>
+<p>例子：<br><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">x=<span class="number">1</span>:<span class="number">5</span>;</span><br><span class="line">y=<span class="number">1</span>:<span class="number">3</span>;</span><br><span class="line">temps=</span><br><span class="line">    [</span><br><span class="line">    <span class="number">82</span> <span class="number">81</span> <span class="number">80</span> <span class="number">82</span> <span class="number">84</span>;</span><br><span class="line">    <span class="number">79</span> <span class="number">63</span> <span class="number">61</span> <span class="number">65</span> <span class="number">81</span>;</span><br><span class="line">    <span class="number">84</span> <span class="number">84</span> <span class="number">82</span> <span class="number">85</span> <span class="number">86</span></span><br><span class="line">    ];</span><br><span class="line"><span class="built_in">figure</span>(<span class="number">1</span>);</span><br><span class="line">mesh(x,y,temps);</span><br><span class="line">xi=<span class="number">1</span>:<span class="number">0.2</span>:<span class="number">5</span>;</span><br><span class="line">yi=<span class="number">1</span>:<span class="number">0.2</span>:<span class="number">3</span>;</span><br><span class="line"></span><br><span class="line">zi=interp2(x,y,temps,xi,yi&#x27;,<span class="string">&#x27;cubic&#x27;</span>);</span><br><span class="line"><span class="built_in">figure</span>(<span class="number">2</span>);</span><br><span class="line">mesh(xi,yi,zi);</span><br><span class="line"><span class="built_in">figure</span>(<span class="number">3</span>);</span><br><span class="line">contour(xi,yi,zi,<span class="number">20</span>,<span class="string">&#x27;r&#x27;</span>);</span><br><span class="line">[<span class="built_in">i</span>,<span class="built_in">j</span>] = <span class="built_in">find</span>(zi == <span class="built_in">min</span>(<span class="built_in">min</span>(zi)));</span><br><span class="line">x = xi(<span class="built_in">j</span>),y = yi(<span class="built_in">i</span>),zmin = zi(<span class="built_in">i</span>,<span class="built_in">j</span>)</span><br><span class="line">[<span class="built_in">i</span>,<span class="built_in">j</span>] = <span class="built_in">find</span>(zi == <span class="built_in">max</span>(<span class="built_in">max</span>(zi)));</span><br><span class="line">x = xi(<span class="built_in">j</span>),y = yi(<span class="built_in">i</span>),zmax = zi(<span class="built_in">i</span>,<span class="built_in">j</span>)</span><br></pre></td></tr></table></figure><br>运行结果如下：<br><img src="image-7.png" alt="alt text"><br>图像如下：<br><code>fig3</code><br><img src="image-6.png" alt="alt text"><br><code>fig2</code><br><img src="image-4.png" alt="alt text"><br><code>fig1</code><br><img src="image-5.png" alt="alt text"></p>
+<p>稍微解释一下：</p>
+<ul>
+<li>plot3(空间曲线)</li>
+<li>mesh(空间曲面)</li>
+<li>surf(空间曲面)</li>
+<li>contour(等高线)</li>
+</ul>
+<p><code>mesh</code>和<code>surf</code>的区别是 </p>
+<ul>
+<li><code>mesh</code>画的是曲面网格图，</li>
+<li><p><code>surf</code>画的是曲面表面图。</p>
+</li>
+<li><p><code>contour(x,y,z,n)</code>的功能是作出点<code>(x,y,z)</code>插值而成曲面的<code>n</code>条等高线</p>
+</li>
+<li>用<code>meshc</code>和<code>surfc</code>可在曲面下方画等高线。</li>
+<li><code>meshz</code>和<code>surfz</code>是画垂帘图。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/algorithm/" rel="tag"># algorithm</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/04/28/LC1017%E8%B4%9F%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/" rel="prev" title="LC1017负二进制转换">
+      <i class="fa fa-chevron-left"></i> LC1017负二进制转换
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E6%8F%92%E5%80%BC%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">拉格朗日插值法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AB%98%E6%AC%A1%E6%8F%92%E5%80%BC%E7%9A%84Runge%E7%8E%B0%E8%B1%A1"><span class="nav-number">2.</span> <span class="nav-text">高次插值的Runge现象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E5%87%BA%E7%8E%B0%E6%8C%AF%E8%8D%A1%E7%8E%B0%E8%B1%A1%E5%91%A2"><span class="nav-number">3.</span> <span class="nav-text">如何避免出现振荡现象呢</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Matlab%E4%B8%AD%E7%9A%84%E6%8F%92%E5%80%BC%E7%AE%97%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">Matlab中的插值算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E7%BB%B4%E6%8F%92%E5%80%BC"><span class="nav-number">4.1.</span> <span class="nav-text">一维插值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E7%BB%B4%E6%8F%92%E5%80%BC"><span class="nav-number">4.2.</span> <span class="nav-text">二维插值</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">RookieL</p>
+  <div class="site-description" itemprop="description">简单的个人博客</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">RookieL</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">11k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">10 mins.</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
