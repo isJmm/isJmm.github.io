@@ -193,7 +193,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-04-28 10:20:24" itemprop="dateModified" datetime="2024-04-28T10:20:24+08:00">2024-04-28</time>
+                <time title="Modified: 2024-04-28 10:45:18" itemprop="dateModified" datetime="2024-04-28T10:45:18+08:00">2024-04-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -211,7 +211,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>988</span>
+              <span>994</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -239,7 +239,8 @@
 <p>此时可以进入<code>neovim</code>命令行输入<code>checkhealth</code>查看配置完成情况<img src="/blog_image/2024_4_26_5.png" alt="alt text"><br>不要出现<code>error</code>,如果出现了，它会提示应该怎么做，按照提示进行修改即可</p>
 <p>接下来，在<code>nvim</code>创建一个新的文件<code>autoload</code>,进入这个文件夹之后，把上面提到的<code>plug.vim</code>粘贴到这里</p>
 <p>之后打开<code>neovim</code>编辑器，在命令栏中输入<code>echo $VIM</code>查看插件安装的路径<br><img src="/blog_image/2024_4_26_2.png" alt="alt text"><br>这里显示的是<code>D:\Neovim\share\nvim</code>,所以直接根据索引到这个文件夹，创建<code>plugged</code>文件夹，如果有就不用了，这里面就是存放插件扩展的地方(这个也就是上面<code>init.vim中#begin</code>后面的文件目录)</p>
-<h2 id="具体安装"><a href="#具体安装" class="headerlink" title="具体安装"></a>具体安装</h2><p>首先要找到插件的地址，比如要安装一个主题<code>One Dark</code>,主题地址 ：<br><a target="_blank" rel="noopener" href="https://github.com/navarasu/onedark.
+<h2 id="具体安装"><a href="#具体安装" class="headerlink" title="具体安装"></a>具体安装</h2><p><a target="_blank" rel="noopener" href="https://dotfyle.com/neovim/plugins/trending">插件下载地址</a></p>
+<p>首先要找到插件的地址，比如要安装一个主题<code>One Dark</code>,主题地址 ：<br><a target="_blank" rel="noopener" href="https://github.com/navarasu/onedark.
 nvim">OneDark</a></p>
 <p>可以看见下面的红框标注的代码<br><img src="/blog_image/2024_4_26_3.png" alt="alt text"><br>我们只需要将上面的代码复制，粘贴到<code>init.vim</code>文件里面，就是上面讲的安装扩展的地方即可，之后打开<code>neovim</code>，在命令行输入<code>PlugInstall</code>，接下来就开始从相应的地址拉取到本地，也就是通过<code>git</code>克隆到<code>plugged</code>这个文件夹中<br><img src="/blog_image/2024_4_26_4.png" alt="alt text">这说明就已经安装好了，回到主界面就可以看见插件的效果了</p>
 
