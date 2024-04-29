@@ -20,21 +20,22 @@
     var CONFIG = {"hostname":"isjmm.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="一部署到网站上面还是自动生成About文件，删除了还是再一次部署之后还是会出现，暂时为解决">
+  <meta name="description" content="1329. 将矩阵按对角线排序难度： 中等  题目大意：  矩阵对角线 是一条从矩阵最上面行或者最左侧列中的某个元素开始的对角线，沿右下方向一直到矩阵末尾的元素。例如，矩阵 mat 有 6 行 3 列，从 mat[2][0] 开始的 矩阵对角线 将会经过 mat[2][0]、mat[3][1] 和 mat[4][2] 。 给你一个 m * n 的整数矩阵 mat ，请你将同一条 矩阵对角线 上的元">
 <meta property="og:type" content="article">
-<meta property="og:title" content="未解决的问题">
-<meta property="og:url" content="https://isjmm.github.io/2024/04/24/%E6%9C%AA%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:title" content="LC1329将矩阵按对角线排序">
+<meta property="og:url" content="https://isjmm.github.io/2024/04/29/LC1329%E5%B0%86%E7%9F%A9%E9%98%B5%E6%8C%89%E5%AF%B9%E8%A7%92%E7%BA%BF%E6%8E%92%E5%BA%8F/index.html">
 <meta property="og:site_name" content="RookieL的个人博客">
-<meta property="og:description" content="一部署到网站上面还是自动生成About文件，删除了还是再一次部署之后还是会出现，暂时为解决">
+<meta property="og:description" content="1329. 将矩阵按对角线排序难度： 中等  题目大意：  矩阵对角线 是一条从矩阵最上面行或者最左侧列中的某个元素开始的对角线，沿右下方向一直到矩阵末尾的元素。例如，矩阵 mat 有 6 行 3 列，从 mat[2][0] 开始的 矩阵对角线 将会经过 mat[2][0]、mat[3][1] 和 mat[4][2] 。 给你一个 m * n 的整数矩阵 mat ，请你将同一条 矩阵对角线 上的元">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-04-24T15:25:04.000Z">
-<meta property="article:modified_time" content="2024-04-24T15:28:08.765Z">
+<meta property="og:image" content="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2020/01/25/1482_example_1_2.png">
+<meta property="article:published_time" content="2024-04-29T11:36:32.000Z">
+<meta property="article:modified_time" content="2024-04-29T11:52:25.876Z">
 <meta property="article:author" content="RookieL">
-<meta property="article:tag" content="GitHub">
-<meta property="article:tag" content="debug">
+<meta property="article:tag" content="algorithm">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2020/01/25/1482_example_1_2.png">
 
-<link rel="canonical" href="https://isjmm.github.io/2024/04/24/%E6%9C%AA%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98/">
+<link rel="canonical" href="https://isjmm.github.io/2024/04/29/LC1329%E5%B0%86%E7%9F%A9%E9%98%B5%E6%8C%89%E5%AF%B9%E8%A7%92%E7%BA%BF%E6%8E%92%E5%BA%8F/">
 
 
 <script id="page-configurations">
@@ -47,7 +48,7 @@
   };
 </script>
 
-  <title>未解决的问题 | RookieL的个人博客</title>
+  <title>LC1329将矩阵按对角线排序 | RookieL的个人博客</title>
   
 
 
@@ -167,7 +168,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://isjmm.github.io/2024/04/24/%E6%9C%AA%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98/">
+    <link itemprop="mainEntityOfPage" href="https://isjmm.github.io/2024/04/29/LC1329%E5%B0%86%E7%9F%A9%E9%98%B5%E6%8C%89%E5%AF%B9%E8%A7%92%E7%BA%BF%E6%8E%92%E5%BA%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -180,7 +181,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          未解决的问题
+          LC1329将矩阵按对角线排序
         </h1>
 
         <div class="post-meta">
@@ -191,7 +192,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2024-04-24 23:25:04 / Modified: 23:28:08" itemprop="dateCreated datePublished" datetime="2024-04-24T23:25:04+08:00">2024-04-24</time>
+              <time title="Created: 2024-04-29 19:36:32 / Modified: 19:52:25" itemprop="dateCreated datePublished" datetime="2024-04-29T19:36:32+08:00">2024-04-29</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -199,7 +200,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BD%91%E7%AB%99%E9%83%A8%E7%BD%B2%E9%97%AE%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">网站部署问题</span></a>
+                  <a href="/categories/LC/" itemprop="url" rel="index"><span itemprop="name">LC</span></a>
                 </span>
             </span>
 
@@ -209,7 +210,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>45</span>
+              <span>1.3k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -228,7 +229,26 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="一"><a href="#一" class="headerlink" title="一"></a>一</h2><p>部署到网站上面还是自动生成<code>About</code>文件，删除了还是再一次部署之后还是会出现，暂时为解决</p>
+        <h2 id="1329-将矩阵按对角线排序"><a href="#1329-将矩阵按对角线排序" class="headerlink" title="1329. 将矩阵按对角线排序"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/sort-the-matrix-diagonally/">1329. 将矩阵按对角线排序</a></h2><p>难度：<font color = gold> 中等 </font></p>
+<p>题目大意：</p>
+<blockquote>
+<p><strong>矩阵对角线</strong> 是一条从矩阵最上面行或者最左侧列中的某个元素开始的对角线，沿右下方向一直到矩阵末尾的元素。例如，矩阵 <code>mat</code> 有 <code>6</code> 行 <code>3</code> 列，从 <code>mat[2][0]</code> 开始的 <strong>矩阵对角线</strong> 将会经过 <code>mat[2][0]</code>、<code>mat[3][1]</code> 和 <code>mat[4][2]</code> 。</p>
+<p>给你一个 <code>m * n</code> 的整数矩阵 <code>mat</code> ，请你将同一条 <strong>矩阵对角线</strong> 上的元素按升序排序后，返回排好序的矩阵。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2020/01/25/1482_example_1_2.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：mat = [[3,3,1,1],[2,2,1,2],[1,1,1,2]]</span><br><span class="line">输出：[[1,1,1,1],[1,2,2,2],[1,2,3,3]]</span><br></pre></td></tr></table></figure>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>m == mat.length</code></li>
+<li><code>n == mat[i].length</code></li>
+<li><code>1 &lt;= m, n &lt;= 100</code></li>
+<li><code>1 &lt;= mat[i][j] &lt;= 100</code></li>
+</ul>
+</blockquote>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>直接将对角线的元素进行归类，排序号之后依次填回去即可，那么怎么进行归类呢，我们知道对角线的斜率是相同的，也就是对角线中元素的横坐标减去纵坐标是相同的，所以我们可以用这个来进行归类，现在又有一个问题，就是可能出现负数，<code>x - y</code>最小值就是<code>-y</code>，那么可以在这个基础上加上纵坐标的最大值，假设是<code>m</code>，那么现在每个对角线可以映射到<code>x - y + m</code>这个值肯定是大于<code>0</code>的，接下来就是怎么填回去，我们发现，当<code>x - y &lt;= m</code>的时候，<code>x</code>从<code>0</code>开始，y对应就是<code>m - x + y</code>，当<code>x - y &gt; m</code>的时候，<code>y</code> 从<code>0</code>开始，那么<code>x</code>对应的就是<code>x - y - m</code>，用一个<code>while</code>循环即可</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">diagonalSort</span>(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; mat) &#123;</span><br><span class="line">        <span class="type">int</span> n = mat.<span class="built_in">size</span>(), m = mat[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; cell[n + m + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i ++ ) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; m; j ++) &#123;</span><br><span class="line">                <span class="type">int</span> t = i - j + m;</span><br><span class="line">                cell[t].<span class="built_in">push_back</span>(mat[i][j]);</span><br><span class="line">            &#125; </span><br><span class="line">        &#125;</span><br><span class="line">        function&lt;<span class="type">void</span>(<span class="type">int</span>, <span class="type">int</span>, <span class="type">int</span>)&gt; work = [&amp;](<span class="type">int</span> cur, <span class="type">int</span> x, <span class="type">int</span> y) -&gt; <span class="type">void</span> &#123;</span><br><span class="line">            <span class="type">int</span> idx = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span> (x &lt; n &amp;&amp; y &lt; m) &#123;</span><br><span class="line">                mat[x][y] = cell[cur][idx ++];</span><br><span class="line">                x ++, y ++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; n + m; i ++) &#123;</span><br><span class="line">            <span class="built_in">sort</span>(cell[i].<span class="built_in">begin</span>(), cell[i].<span class="built_in">end</span>());</span><br><span class="line">            <span class="keyword">if</span> (i &lt;= m) <span class="built_in">work</span>(i, <span class="number">0</span>, m - i);</span><br><span class="line">            <span class="keyword">else</span> <span class="built_in">work</span>(i, i - m, <span class="number">0</span>);</span><br><span class="line">        &#125; </span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> mat;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>时间复杂度：$O( nm log(nm))$</p>
+<p>结束了</p>
 
     </div>
 
@@ -238,8 +258,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/GitHub/" rel="tag"># GitHub</a>
-              <a href="/tags/debug/" rel="tag"># debug</a>
+              <a href="/tags/algorithm/" rel="tag"># algorithm</a>
           </div>
 
         
@@ -248,13 +267,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2024/04/24/GitHub%E4%B8%8A%E5%88%A0%E9%99%A4%E4%BB%93%E5%BA%93%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E5%A4%B9/" rel="prev" title="GitHub上删除仓库中的文件夹">
-      <i class="fa fa-chevron-left"></i> GitHub上删除仓库中的文件夹
+    <a href="/2024/04/28/%E4%B8%80%E7%BB%B4%E4%BA%8C%E7%BB%B4%E6%8F%92%E5%80%BC%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%E5%8F%8A%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90/" rel="prev" title="一维二维插值算法原理及案例分析">
+      <i class="fa fa-chevron-left"></i> 一维二维插值算法原理及案例分析
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2024/04/25/%E7%81%B0%E8%89%B2%E9%A2%84%E6%B5%8B%E6%A8%A1%E5%9E%8B/" rel="next" title="灰色预测模型">
-      灰色预测模型 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -313,7 +329,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80"><span class="nav-number">1.</span> <span class="nav-text">一</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1329-%E5%B0%86%E7%9F%A9%E9%98%B5%E6%8C%89%E5%AF%B9%E8%A7%92%E7%BA%BF%E6%8E%92%E5%BA%8F"><span class="nav-number">1.</span> <span class="nav-text">1329. 将矩阵按对角线排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
