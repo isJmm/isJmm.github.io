@@ -162,6 +162,238 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://isjmm.github.io/2024/05/02/LC857%E9%9B%87%E4%BD%A3-K-%E5%90%8D%E5%B7%A5%E4%BA%BA%E7%9A%84%E6%9C%80%E4%BD%8E%E6%88%90%E6%9C%AC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="RookieL">
+      <meta itemprop="description" content="简单的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RookieL的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/05/02/LC857%E9%9B%87%E4%BD%A3-K-%E5%90%8D%E5%B7%A5%E4%BA%BA%E7%9A%84%E6%9C%80%E4%BD%8E%E6%88%90%E6%9C%AC/" class="post-title-link" itemprop="url">LC857雇佣 K 名工人的最低成本</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2024-05-02 22:27:52 / Modified: 22:40:55" itemprop="dateCreated datePublished" datetime="2024-05-02T22:27:52+08:00">2024-05-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LC/" itemprop="url" rel="index"><span itemprop="name">LC</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.9k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="857-雇佣-K-名工人的最低成本"><a href="#857-雇佣-K-名工人的最低成本" class="headerlink" title="857. 雇佣 K 名工人的最低成本"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-cost-to-hire-k-workers/">857. 雇佣 K 名工人的最低成本</a></h2><p>难度： <font color = red> 困难 </font></p>
+<p>题目大意：</p>
+<blockquote>
+<p>有 <code>n</code> 名工人。 给定两个数组 <code>quality</code> 和 <code>wage</code> ，其中，<code>quality[i]</code> 表示第 <code>i</code> 名工人的工作质量，其最低期望工资为 <code>wage[i]</code> 。</p>
+<p>现在我们想雇佣 <code>k</code> 名工人组成一个<em>工资组。</em>在雇佣 一组 <code>k</code> 名工人时，我们必须按照下述规则向他们支付工资：</p>
+<ol>
+<li>对工资组中的每名工人，应当按其工作质量与同组其他工人的工作质量的比例来支付工资。</li>
+<li>工资组中的每名工人至少应当得到他们的最低期望工资。</li>
+</ol>
+<p>给定整数 <code>k</code> ，返回 <em>组成满足上述条件的付费群体所需的最小金额</em> 。在实际答案的 <code>10-5</code> 以内的答案将被接受。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入： quality = [10,20,5], wage = [70,50,30], k = 2</span><br><span class="line">输出： 105.00000</span><br><span class="line">解释： 我们向 0 号工人支付 70，向 2 号工人支付 35。</span><br></pre></td></tr></table></figure>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>n == quality.length == wage.length</code></li>
+<li><code>1 &lt;= k &lt;= n &lt;= 10^4</code></li>
+<li><code>1 &lt;= quality[i], wage[i] &lt;= 10^4</code></li>
+</ul>
+</blockquote>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><h3 id="提示1"><a href="#提示1" class="headerlink" title="提示1"></a>提示1</h3><p>定理：在最优发工资方案下，至少有一名工人，发给他的工资恰好等于他的最低期望工资。</p>
+<p>证明：反证法。假设不存在这样的工人，那么发给每名工人的工资都高于其最低期望工资，我们可以把每人的工资都下调，从而得到更优的方案，矛盾。</p>
+<h3 id="提示2"><a href="#提示2" class="headerlink" title="提示2"></a>提示2</h3><p>枚举发了最低期望工资的那名工人，在满足题干中规则 1 的前提下，哪些工人可以满足规则 2？</p>
+<p>如何快速地求出这些工人？</p>
+<h3 id="提示3"><a href="#提示3" class="headerlink" title="提示3"></a>提示3</h3><p>定义</p>
+<script type="math/tex; mode=display">
+r_i = \frac{wage_i}{quality_i}</script><p>表「每单位工作质量的工资」。</p>
+<p>若以某人的 $r_i$为基准发工资，那么对于 <code>r</code>值不超过 </p>
+<p>  的工人，发给他们的工资是不低于其最低期望工资的，因此这些工人是可以随意选择（雇佣）的。</p>
+<p>按照<code>r</code> 从小到大排序，我们便可以快速地求出这些工人。</p>
+<p>要选哪<code>k</code> 名工人呢？</p>
+<h3 id="提示4"><a href="#提示4" class="headerlink" title="提示4"></a>提示4</h3><p>设这<code>k</code>名工人的quality之和为<code>sumQ</code>如果以$r_i$为基准发工资，那么工资总额就是$sumQ * r_i$,因此<code>sumQ</code>越小，工资总额越少</p>
+<p>因此我们需要在从小到大枚举 <code>r_i</code>时，维护当前最小的 <code>k</code> 个 <code>quality</code> 值。</p>
+<p>如何高效地维护呢？</p>
+<p>用一个<strong>最大堆</strong>来维护。</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">worker</span> &#123;</span><br><span class="line">        <span class="type">double</span> quality;</span><br><span class="line">        <span class="type">double</span> wage;</span><br><span class="line">        <span class="type">double</span> reality;</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">double</span> <span class="title">mincostToHireWorkers</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; quality, vector&lt;<span class="type">int</span>&gt;&amp; wage, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = quality.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> sum_q = <span class="number">0</span>;</span><br><span class="line">        priority_queue&lt;<span class="type">double</span>, vector&lt;<span class="type">double</span>&gt;&gt; pq;</span><br><span class="line">        <span class="function">vector&lt;worker&gt; <span class="title">w</span><span class="params">(n)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i ++) &#123;</span><br><span class="line">            w[i] = &#123;(<span class="type">double</span>)quality[i], (<span class="type">double</span>)wage[i], <span class="number">1.0</span> * wage[i] / quality[i]&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">sort</span>(w.<span class="built_in">begin</span>(), w.<span class="built_in">end</span>(), [&amp;](<span class="type">const</span> worker&amp; a, <span class="type">const</span> worker&amp; b) &#123;</span><br><span class="line">            <span class="keyword">return</span> a.reality &lt;= b.reality;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; k; i ++) &#123;</span><br><span class="line">            pq.<span class="built_in">push</span>(w[i].quality);</span><br><span class="line">            sum_q += w[i].quality;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">double</span> res = sum_q * w[k - <span class="number">1</span>].reality;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = k; i &lt; n; i ++ ) &#123;</span><br><span class="line">            <span class="type">int</span> q = w[i].quality;</span><br><span class="line">            <span class="keyword">if</span> (q &lt; pq.<span class="built_in">top</span>()) &#123;</span><br><span class="line">                sum_q -= pq.<span class="built_in">top</span>() - q;</span><br><span class="line">                pq.<span class="built_in">pop</span>();</span><br><span class="line">                pq.<span class="built_in">push</span>(q);</span><br><span class="line">                res = <span class="built_in">min</span>(res, w[i].reality * sum_q);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>时间复杂度:$O(nlogn)$</p>
+<p>作者：灵茶山艾府<br>链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-cost-to-hire-k-workers/solutions/1815856/yi-bu-bu-ti-shi-ru-he-si-kao-ci-ti-by-en-1p00/">https://leetcode.cn/problems/minimum-cost-to-hire-k-workers/solutions/1815856/yi-bu-bu-ti-shi-ru-he-si-kao-ci-ti-by-en-1p00/</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://isjmm.github.io/2024/05/02/LC2462%E9%9B%87%E4%BD%A3-K-%E4%BD%8D%E5%B7%A5%E4%BA%BA%E7%9A%84%E6%80%BB%E4%BB%A3%E4%BB%B7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="RookieL">
+      <meta itemprop="description" content="简单的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RookieL的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/05/02/LC2462%E9%9B%87%E4%BD%A3-K-%E4%BD%8D%E5%B7%A5%E4%BA%BA%E7%9A%84%E6%80%BB%E4%BB%A3%E4%BB%B7/" class="post-title-link" itemprop="url">LC2462雇佣 K 位工人的总代价</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2024-05-02 22:15:04 / Modified: 22:27:23" itemprop="dateCreated datePublished" datetime="2024-05-02T22:15:04+08:00">2024-05-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LC/" itemprop="url" rel="index"><span itemprop="name">LC</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>2.1k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="2462-雇佣-K-位工人的总代价"><a href="#2462-雇佣-K-位工人的总代价" class="headerlink" title="2462. 雇佣 K 位工人的总代价"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/total-cost-to-hire-k-workers/">2462. 雇佣 K 位工人的总代价</a></h2><p>难度： <font color = gold> 中等 </font></p>
+<p>题目大意：</p>
+<blockquote>
+<p>给你一个下标从 <strong>0</strong> 开始的整数数组 <code>costs</code> ，其中 <code>costs[i]</code> 是雇佣第 <code>i</code> 位工人的代价。</p>
+<p>同时给你两个整数 <code>k</code> 和 <code>candidates</code> 。我们想根据以下规则恰好雇佣 <code>k</code> 位工人：</p>
+<ul>
+<li><p>总共进行 <code>k</code> 轮雇佣，且每一轮恰好雇佣一位工人。</p>
+</li>
+<li><p>在每一轮雇佣中，从最前面<code>candidates</code>和最后面 <code>candidates</code>人中选出代价最小的一位工人，如果有多位代价相同且最小的工人，选择下标更小的一位工人。</p>
+<ul>
+<li>比方说，<code>costs = [3,2,7,7,1,2]</code> 且 <code>candidates = 2</code> ，第一轮雇佣中，我们选择第 <code>4</code> 位工人，因为他的代价最小 <code>[3,2,7,7,1,2]</code> 。</li>
+<li>第二轮雇佣，我们选择第 <code>1</code> 位工人，因为他们的代价与第 <code>4</code> 位工人一样都是最小代价，而且下标更小，<code>[3,2,7,7,2]</code> 。注意每一轮雇佣后，剩余工人的下标可能会发生变化。</li>
+</ul>
+</li>
+<li><p>如果剩余员工数目不足 <code>candidates</code> 人，那么下一轮雇佣他们中代价最小的一人，如果有多位代价相同且最小的工人，选择下标更小的一位工人。</p>
+</li>
+<li><p>一位工人只能被选择一次。</p>
+</li>
+</ul>
+<p>返回雇佣恰好 <code>k</code> 位工人的总代价。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入：costs = [17,12,10,2,7,2,11,20,8], k = 3, candidates = 4</span><br><span class="line">输出：11</span><br><span class="line">解释：我们总共雇佣 3 位工人。总代价一开始为 0 。</span><br><span class="line">- 第一轮雇佣，我们从 [17,12,10,2,7,2,11,20,8] 中选择。最小代价是 2 ，有两位工人，我们选择下标更小的一位工人，即第 3 位工人。总代价是 0 + 2 = 2 。</span><br><span class="line">- 第二轮雇佣，我们从 [17,12,10,7,2,11,20,8] 中选择。最小代价是 2 ，下标为 4 ，总代价是 2 + 2 = 4 。</span><br><span class="line">- 第三轮雇佣，我们从 [17,12,10,7,11,20,8] 中选择，最小代价是 7 ，下标为 3 ，总代价是 4 + 7 = 11 。注意下标为 3 的工人同时在最前面和最后面 4 位工人中。</span><br><span class="line">总雇佣代价是 11 。</span><br></pre></td></tr></table></figure>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= costs.length &lt;= 10^5</code></li>
+<li><code>1 &lt;= costs[i] &lt;= 10^5</code></li>
+<li><code>1 &lt;= k, candidates &lt;= costs.length</code></li>
+</ul>
+</blockquote>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>直接模拟即可，从最前面<code>candidates</code>和最后面 <code>candidates</code>人中选出代价最小的一位工人，前面选择一个最小的，后面选择一个最小的，两个进行比较，如果两个不相等，那么肯定是选择小的那么，否则如果是相等，那么肯定选择小表小的那个，也就是前面那个，这里可以使用两个优先队列来做<code>prefix</code>和<code>sufix</code>，选完一个之后，要对堆进行更新，可以使用两个变量<code>l</code>和<code>r</code>表示如果<code>prefix pop</code>了，那么就要将<code>costs[l]</code>，加到堆中，否则就是<code>sufix pop</code>了,那么就要将<code>costs[r]</code>，知道<code>l &gt; r</code>的时候说明已经没有多余的候选人了</p>
+<p>有一个特殊情况，就是如果<code>n &lt; 2 * candidate</code>，那么直接所有人都被选中，那么我们只需要排个序，选择前<code>k</code>个即可</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">using</span> LL = <span class="type">long</span> <span class="type">long</span>;</span><br><span class="line">    priority_queue&lt;<span class="type">int</span>,vector&lt;<span class="type">int</span>&gt;, greater&lt;<span class="type">int</span>&gt;&gt; prefix, sufix; </span><br><span class="line">    <span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">totalCost</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; costs, <span class="type">int</span> k, <span class="type">int</span> candidates)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = costs.<span class="built_in">size</span>();</span><br><span class="line">        LL res = <span class="number">0</span> ;</span><br><span class="line">        <span class="keyword">if</span> (n &lt;= <span class="number">2</span> * candidates) &#123;</span><br><span class="line">            <span class="built_in">sort</span>(costs.<span class="built_in">begin</span>(), costs.<span class="built_in">end</span>());</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; k; i ++) &#123;</span><br><span class="line">                res = res + costs[i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; candidates; i ++) &#123;</span><br><span class="line">            prefix.<span class="built_in">push</span>(costs[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; candidates; j ++) &#123;</span><br><span class="line">            sufix.<span class="built_in">push</span>(costs[n - j - <span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 方便后面处理</span></span><br><span class="line">        prefix.<span class="built_in">push</span>(<span class="number">1e9</span>), sufix.<span class="built_in">push</span>(<span class="number">1e9</span>);</span><br><span class="line">        <span class="comment">// 用l和r表示下一个可能要放进堆的下标</span></span><br><span class="line">        <span class="type">int</span> l = candidates, r = n - candidates - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (k --) &#123;</span><br><span class="line">            <span class="keyword">if</span> (prefix.<span class="built_in">top</span>() &lt;= sufix.<span class="built_in">top</span>()) &#123;</span><br><span class="line">                res = res + prefix.<span class="built_in">top</span>();</span><br><span class="line">                prefix.<span class="built_in">pop</span>();</span><br><span class="line">                <span class="keyword">if</span> (l &lt;= r) &#123;</span><br><span class="line">                    prefix.<span class="built_in">push</span>(costs[l]);</span><br><span class="line">                    l ++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                res = res + sufix.<span class="built_in">top</span>();</span><br><span class="line">                sufix.<span class="built_in">pop</span>();</span><br><span class="line">                <span class="keyword">if</span> (l &lt;= r) &#123;</span><br><span class="line">                    sufix.<span class="built_in">push</span>(costs[r]);</span><br><span class="line">                    r --;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>结束了</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://isjmm.github.io/2024/04/30/%E5%9B%9E%E5%BD%92%E5%88%86%E6%9E%90%E7%AE%97%E6%B3%95%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E5%92%8C%E7%BC%96%E7%A8%8B%E5%AE%9E%E7%8E%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1401,178 +1633,11 @@ y^{(0)}(k) = x^{(0)}(k) + c</script><p><strong>注意</strong> : 如果加上了
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://isjmm.github.io/2024/04/24/GitHub%E4%B8%8A%E5%88%A0%E9%99%A4%E4%BB%93%E5%BA%93%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E5%A4%B9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="RookieL">
-      <meta itemprop="description" content="简单的个人博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RookieL的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/04/24/GitHub%E4%B8%8A%E5%88%A0%E9%99%A4%E4%BB%93%E5%BA%93%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E5%A4%B9/" class="post-title-link" itemprop="url">GitHub上删除仓库中的文件夹</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2024-04-24 22:54:24 / Modified: 23:23:58" itemprop="dateCreated datePublished" datetime="2024-04-24T22:54:24+08:00">2024-04-24</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Others/" itemprop="url" rel="index"><span itemprop="name">Others</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>145</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>因为网站部署问题，导致文件上传错误</p>
-<h2 id="删除文件的方法"><a href="#删除文件的方法" class="headerlink" title="删除文件的方法"></a>删除文件的方法</h2><p>点击右边三个点，可以看到<code>delete directory(删除文件)</code><br><img src="/blog_image/2024_4_24.png" alt="Alt Text"></p>
-<p>点击之后出现<br><img src="/blog_image/2024_4_24_2.png" alt="Alt text"><br>点击<code>commit change</code>就永久删除了，所以慎重<br>当然点击旁边的取消改变就可以撤销本次操作了</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文介绍了怎么在GitHub上方便快捷的删除一个文件夹或者是文件</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://isjmm.github.io/2024/04/24/hexo%E9%83%A8%E7%BD%B2%E5%88%B0GitHub%E6%96%87%E4%BB%B6%E5%A4%A7%E5%B0%8F%E5%86%99%E9%97%AE%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="RookieL">
-      <meta itemprop="description" content="简单的个人博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RookieL的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/04/24/hexo%E9%83%A8%E7%BD%B2%E5%88%B0GitHub%E6%96%87%E4%BB%B6%E5%A4%A7%E5%B0%8F%E5%86%99%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">hexo部署到GitHub文件大小写问题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2024-04-24 22:47:05 / Modified: 23:00:41" itemprop="dateCreated datePublished" datetime="2024-04-24T22:47:05+08:00">2024-04-24</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BD%91%E7%AB%99%E9%83%A8%E7%BD%B2%E9%97%AE%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">网站部署问题</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>279</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>使用<code>hexo d</code>部署到GitHub上时，访问网站，发现<code>关于</code>这个标签打不开，显示找不到文件，之后去GitHub上发现，网站上的名字是<code>About</code>，而本地文件的名字是<code>about</code>，所以找不到，查找资料得知</p>
-<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>查询资料发现，<code>git</code>是默认不区分大小写的，之前hexo生成了一个<code>about</code>文件夹，后来将文件夹的名称改为了<code>About</code>，然而在<code>Github</code>上是不会将小写改为大写的。</p>
-<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>找到<code>.git</code>文件，将<code>config</code>文件的 <code>ignorecase=true</code> 改为 <code>ignorecase=false</code>即可</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文解决了hexo部署过程中本地文件和上传到GitHub的文件不一致的情况</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
 
 
 
@@ -1637,7 +1702,7 @@ y^{(0)}(k) = x^{(0)}(k) + c</script><p><strong>注意</strong> : 如果加上了
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1686,12 +1751,12 @@ y^{(0)}(k) = x^{(0)}(k) + c</script><p><strong>注意</strong> : 如果加上了
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">19k</span>
+    <span title="Symbols count total">23k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">17 mins.</span>
+    <span title="Reading time total">21 mins.</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
   </div>
