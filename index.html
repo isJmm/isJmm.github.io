@@ -187,7 +187,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2024-05-02 22:27:52 / Modified: 22:42:45" itemprop="dateCreated datePublished" datetime="2024-05-02T22:27:52+08:00">2024-05-02</time>
+              <time title="Created: 2024-05-02 22:27:52 / Modified: 22:43:44" itemprop="dateCreated datePublished" datetime="2024-05-02T22:27:52+08:00">2024-05-02</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -260,7 +260,7 @@ r_i = \frac{wage_i}{quality_i}</script><p>表「每单位工作质量的工资�
 <p>用一个<strong>最大堆</strong>来维护。</p>
 <h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">worker</span> &#123;</span><br><span class="line">        <span class="type">double</span> quality;</span><br><span class="line">        <span class="type">double</span> wage;</span><br><span class="line">        <span class="type">double</span> reality;</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">double</span> <span class="title">mincostToHireWorkers</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; quality, vector&lt;<span class="type">int</span>&gt;&amp; wage, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = quality.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> sum_q = <span class="number">0</span>;</span><br><span class="line">        priority_queue&lt;<span class="type">double</span>, vector&lt;<span class="type">double</span>&gt;&gt; pq;</span><br><span class="line">        <span class="function">vector&lt;worker&gt; <span class="title">w</span><span class="params">(n)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i ++) &#123;</span><br><span class="line">            w[i] = &#123;(<span class="type">double</span>)quality[i], (<span class="type">double</span>)wage[i], <span class="number">1.0</span> * wage[i] / quality[i]&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">sort</span>(w.<span class="built_in">begin</span>(), w.<span class="built_in">end</span>(), [&amp;](<span class="type">const</span> worker&amp; a, <span class="type">const</span> worker&amp; b) &#123;</span><br><span class="line">            <span class="keyword">return</span> a.reality &lt;= b.reality;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; k; i ++) &#123;</span><br><span class="line">            pq.<span class="built_in">push</span>(w[i].quality);</span><br><span class="line">            sum_q += w[i].quality;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">double</span> res = sum_q * w[k - <span class="number">1</span>].reality;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = k; i &lt; n; i ++ ) &#123;</span><br><span class="line">            <span class="type">int</span> q = w[i].quality;</span><br><span class="line">            <span class="keyword">if</span> (q &lt; pq.<span class="built_in">top</span>()) &#123;</span><br><span class="line">                sum_q -= pq.<span class="built_in">top</span>() - q;</span><br><span class="line">                pq.<span class="built_in">pop</span>();</span><br><span class="line">                pq.<span class="built_in">push</span>(q);</span><br><span class="line">                res = <span class="built_in">min</span>(res, w[i].reality * sum_q);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>时间复杂度:$O(nlogn)$</p>
-<p>作者：灵茶山艾府<br>链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-cost-to-hire-k-workers/solutions/1815856/yi-bu-bu-ti-shi-ru-he-si-kao-ci-ti-by-en-1p00/">https://leetcode.cn/problems/minimum-cost-to-hire-k-workers/solutions/1815856/yi-bu-bu-ti-shi-ru-he-si-kao-ci-ti-by-en-1p00/</a></p>
+<h2 id="参考题解"><a href="#参考题解" class="headerlink" title="参考题解"></a>参考题解</h2><p>作者：灵茶山艾府<br>链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-cost-to-hire-k-workers/solutions/1815856/yi-bu-bu-ti-shi-ru-he-si-kao-ci-ti-by-en-1p00/">https://leetcode.cn/problems/minimum-cost-to-hire-k-workers/solutions/1815856/yi-bu-bu-ti-shi-ru-he-si-kao-ci-ti-by-en-1p00/</a></p>
 
       
     </div>
@@ -425,7 +425,7 @@ r_i = \frac{wage_i}{quality_i}</script><p>表「每单位工作质量的工资�
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-05-01 00:10:15" itemprop="dateModified" datetime="2024-05-01T00:10:15+08:00">2024-05-01</time>
+                <time title="Modified: 2024-05-02 22:58:54" itemprop="dateModified" datetime="2024-05-02T22:58:54+08:00">2024-05-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -443,7 +443,7 @@ r_i = \frac{wage_i}{quality_i}</script><p>表「每单位工作质量的工资�
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>876</span>
+              <span>874</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -469,28 +469,28 @@ E\varepsilon = 0 \\
 D\varepsilon = \sigma^{2}
 \end{dcases}</script><p>回归分析的基本步骤：</p>
 <ol>
-<li>用试验值(样本值)对$a,b和\sigma$估计</li>
-<li>对回归系数$a, b$做假设检验</li>
-<li>在$x = x_0$对$y$做预测，对$y$做区间估计</li>
+<li>用试验值(样本值)对 <code>a,b</code> 和 $\sigma$  估计</li>
+<li>对回归系数 $a, b$ 做假设检验</li>
+<li>在 $x = x_0$对 $y$ 做预测，对 $y$ 做区间估计</li>
 </ol>
-<h3 id="最小二乘法"><a href="#最小二乘法" class="headerlink" title="最小二乘法"></a>最小二乘法</h3><p>用最小二乘法可以得出$a，b$的最优解<br><img src="image.png" alt="alt text"></p>
+<h3 id="最小二乘法"><a href="#最小二乘法" class="headerlink" title="最小二乘法"></a>最小二乘法</h3><p>用最小二乘法可以得出 $a，b$ 的最优解<br><img src="/blog_image/2024_4_30_0.png" alt="alt text"></p>
 <script type="math/tex; mode=display">
 \begin{dcases}
 \overline{X} = \frac{1}{n}\sum X_i \\
 \overline{Y} = \frac{1}{n}\sum Y_i \\
-x_i = X_i - \overline{X}\\
-y_i = Y_i - \overline{Y}\\
+x_i = X_i - \overline{X} \\
+y_i = Y_i - \overline{Y} 
 \end{dcases}</script><p>参数的估计量可写成</p>
 <script type="math/tex; mode=display">
 \begin{dcases}
 \hat{\beta_1} = \frac{\sum x_i y_i}{\sum x_i^2} \\
 \hat{\beta_0} = \overline{Y} - \hat{\beta_1} \overline{X}
 
-\end{dcases}</script><p>记作 $e_i = Y_i - \hat{Y_i}$表示第<code>i</code>个样本观测点的残差，就是误差，可以得到<strong>随机误差项方差的估计量</strong>为</p>
+\end{dcases}</script><p>记作 $e_i = Y_i - \hat{Y_i}$ 表示第<code>i</code>个样本观测点的残差，就是误差，可以得到<strong>随机误差项方差的估计量</strong>为</p>
 <script type="math/tex; mode=display">
 \hat{\sigma_u^2} = \frac{\sum e_i^2}{n - 2}</script><h3 id="检验，预测，控制"><a href="#检验，预测，控制" class="headerlink" title="检验，预测，控制"></a>检验，预测，控制</h3><ol>
 <li><p>F检验法</p>
-<p>当$H_0$成立时，$F = \frac{U * (n - 2)}{Q_e} ~ F(1, n - 2)$</p>
+<p>当 $H_0$ 成立时，$F = \frac{U * (n - 2)}{Q_e} ~ F(1, n - 2)$</p>
 <p>其中$U = \sum_{i = 1}{n}(\hat{y_i} - \overline{y})^2$</p>
 </li>
 <li><p>t检验法</p>
@@ -499,7 +499,7 @@ y_i = Y_i - \overline{Y}\\
 <p>其中$L_{xx} = \sum_{i = 1}^{n}(x_i - \overline{x})^2 = \sum_{i = 1}^{n}x_i^2 - n\overline{x}^2$</p>
 </li>
 <li><p>r检验法</p>
-<p><img src="image-1.png" alt="alt text"><br><img src="image-2.png" alt="alt text"></p>
+<p><img src="/blog_image/2024_4_30_1.png" alt="alt text"><br><img src="/blog_image/2024_4_30_2.png" alt="alt text"></p>
 </li>
 </ol>
 
