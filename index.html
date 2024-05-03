@@ -162,6 +162,105 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://isjmm.github.io/2024/05/03/LC1491%E5%8E%BB%E6%8E%89%E6%9C%80%E4%BD%8E%E5%B7%A5%E8%B5%84%E5%92%8C%E6%9C%80%E9%AB%98%E5%B7%A5%E8%B5%84%E5%90%8E%E7%9A%84%E5%B7%A5%E8%B5%84%E5%B9%B3%E5%9D%87%E5%80%BC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="RookieL">
+      <meta itemprop="description" content="简单的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RookieL的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/05/03/LC1491%E5%8E%BB%E6%8E%89%E6%9C%80%E4%BD%8E%E5%B7%A5%E8%B5%84%E5%92%8C%E6%9C%80%E9%AB%98%E5%B7%A5%E8%B5%84%E5%90%8E%E7%9A%84%E5%B7%A5%E8%B5%84%E5%B9%B3%E5%9D%87%E5%80%BC/" class="post-title-link" itemprop="url">LC1491去掉最低工资和最高工资后的工资平均值</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2024-05-03 09:54:17 / Modified: 09:55:10" itemprop="dateCreated datePublished" datetime="2024-05-03T09:54:17+08:00">2024-05-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LC/" itemprop="url" rel="index"><span itemprop="name">LC</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>578</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1491-去掉最低工资和最高工资后的工资平均值"><a href="#1491-去掉最低工资和最高工资后的工资平均值" class="headerlink" title="1491. 去掉最低工资和最高工资后的工资平均值"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/average-salary-excluding-the-minimum-and-maximum-salary/">1491. 去掉最低工资和最高工资后的工资平均值</a></h2><p>难度: <font color = green> 简单 </font></p>
+<p>题目大意：</p>
+<blockquote>
+<p>给你一个整数数组 <code>salary</code> ，数组里每个数都是 <strong>唯一</strong> 的，其中 <code>salary[i]</code> 是第 <code>i</code> 个员工的工资。</p>
+<p>请你返回去掉最低工资和最高工资以后，剩下员工工资的平均值。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：salary = [4000,3000,1000,2000]</span><br><span class="line">输出：2500.00000</span><br><span class="line">解释：最低工资和最高工资分别是 1000 和 4000 。</span><br><span class="line">去掉最低工资和最高工资以后的平均工资是 (2000+3000)/2= 2500</span><br></pre></td></tr></table></figure>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>3 &lt;= salary.length &lt;= 100</code></li>
+<li><code>10^3 &lt;= salary[i] &lt;= 10^6</code></li>
+<li><code>salary[i]</code> 是唯一的。</li>
+<li>与真实值误差在 <code>10^-5</code> 以内的结果都将视为正确答案。</li>
+</ul>
+</blockquote>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>直接模拟即可，对数组排个序</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">double</span> <span class="title">average</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; salary)</span> </span>&#123;</span><br><span class="line">        ranges::<span class="built_in">sort</span>(salary);</span><br><span class="line">        <span class="type">double</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> n = salary.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; n - <span class="number">1</span>; i ++) &#123;</span><br><span class="line">            res += salary[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res / (n - <span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>时间复杂度:$O(nlogn)$</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://isjmm.github.io/2024/05/02/LC857%E9%9B%87%E4%BD%A3-K-%E5%90%8D%E5%B7%A5%E4%BA%BA%E7%9A%84%E6%9C%80%E4%BD%8E%E6%88%90%E6%9C%AC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -425,7 +524,7 @@ r_i = \frac{wage_i}{quality_i}</script><p>表「每单位工作质量的工资�
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-05-02 22:58:54" itemprop="dateModified" datetime="2024-05-02T22:58:54+08:00">2024-05-02</time>
+                <time title="Modified: 2024-05-02 23:40:27" itemprop="dateModified" datetime="2024-05-02T23:40:27+08:00">2024-05-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -443,7 +542,7 @@ r_i = \frac{wage_i}{quality_i}</script><p>表「每单位工作质量的工资�
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>874</span>
+              <span>920</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -462,31 +561,33 @@ r_i = \frac{wage_i}{quality_i}</script><p>表「每单位工作质量的工资�
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="一元线性回归分析"><a href="#一元线性回归分析" class="headerlink" title="一元线性回归分析"></a>一元线性回归分析</h2><h3 id="一般是数学模型是"><a href="#一般是数学模型是" class="headerlink" title="一般是数学模型是"></a>一般是数学模型是</h3><script type="math/tex; mode=display">
-\begin{dcases}
+          <h2 id="一元线性回归分析"><a href="#一元线性回归分析" class="headerlink" title="一元线性回归分析"></a>一元线性回归分析</h2><h3 id="一般是数学模型是"><a href="#一般是数学模型是" class="headerlink" title="一般是数学模型是"></a>一般是数学模型是</h3><script type="math/tex; mode=display">\left\{
+\begin{aligned}
 y = b + ax + \varepsilon \\
 E\varepsilon = 0 \\
 D\varepsilon = \sigma^{2}
-\end{dcases}</script><p>回归分析的基本步骤：</p>
+\end{aligned}
+\right.</script><p>回归分析的基本步骤：</p>
 <ol>
 <li>用试验值(样本值)对 <code>a,b</code> 和 $\sigma$  估计</li>
 <li>对回归系数 $a, b$ 做假设检验</li>
 <li>在 $x = x_0$对 $y$ 做预测，对 $y$ 做区间估计</li>
 </ol>
 <h3 id="最小二乘法"><a href="#最小二乘法" class="headerlink" title="最小二乘法"></a>最小二乘法</h3><p>用最小二乘法可以得出 $a，b$ 的最优解<br><img src="/blog_image/2024_4_30_0.png" alt="alt text"></p>
-<script type="math/tex; mode=display">
-\begin{dcases}
+<script type="math/tex; mode=display">\left\{
+\begin{aligned}
 \overline{X} = \frac{1}{n}\sum X_i \\
 \overline{Y} = \frac{1}{n}\sum Y_i \\
 x_i = X_i - \overline{X} \\
 y_i = Y_i - \overline{Y} 
-\end{dcases}</script><p>参数的估计量可写成</p>
-<script type="math/tex; mode=display">
-\begin{dcases}
+\end{aligned}
+\right.</script><p>参数的估计量可写成</p>
+<script type="math/tex; mode=display">\left\{
+   \begin{align*}
 \hat{\beta_1} = \frac{\sum x_i y_i}{\sum x_i^2} \\
 \hat{\beta_0} = \overline{Y} - \hat{\beta_1} \overline{X}
-
-\end{dcases}</script><p>记作 $e_i = Y_i - \hat{Y_i}$ 表示第<code>i</code>个样本观测点的残差，就是误差，可以得到<strong>随机误差项方差的估计量</strong>为</p>
+\end{align*}
+\right.</script><p>记作 $e_i = Y_i - \hat{Y_i}$ 表示第<code>i</code>个样本观测点的残差，就是误差，可以得到<strong>随机误差项方差的估计量</strong>为</p>
 <script type="math/tex; mode=display">
 \hat{\sigma_u^2} = \frac{\sum e_i^2}{n - 2}</script><h3 id="检验，预测，控制"><a href="#检验，预测，控制" class="headerlink" title="检验，预测，控制"></a>检验，预测，控制</h3><ol>
 <li><p>F检验法</p>
@@ -753,7 +854,7 @@ y_i = Y_i - \overline{Y}
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-04-29 23:51:48" itemprop="dateModified" datetime="2024-04-29T23:51:48+08:00">2024-04-29</time>
+                <time title="Modified: 2024-05-02 23:15:02" itemprop="dateModified" datetime="2024-05-02T23:15:02+08:00">2024-05-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1368,7 +1469,7 @@ nvim">OneDark</a></p>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-04-26 00:19:51" itemprop="dateModified" datetime="2024-04-26T00:19:51+08:00">2024-04-26</time>
+                <time title="Modified: 2024-05-02 23:40:12" itemprop="dateModified" datetime="2024-05-02T23:40:12+08:00">2024-05-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1502,13 +1603,15 @@ z^{(0)}(k) = \alpha x^{(0)}(k) - (1 - \alpha)x^{(0)}(k - 1) (k = 2, 3, ...)</scr
 即或\quad &x^{(0)}(k) + \alpha  z^{(1)}(k) = b
 \end{align*}</script><p>式子中$\quad$$x^{(0)}$表示灰导数，<code>a</code>表示发展系数，$z^{(1)}(k)$白化背景值, <code>b</code>称为灰作用量</p>
 <p>将时刻表 <code>k = 2, 3, ...</code>带入式子中得到</p>
-<script type="math/tex; mode=display">
-\begin{dcases}
-x^{(0)}(2) + \alpha  z^{(1)}(2) = b \\
+<script type="math/tex; mode=display">\left\{
+   \begin{aligned}
+   x^{(0)}(2) + \alpha  z^{(1)}(2) = b \\
 x^{(0)}(3) + \alpha  z^{(1)}(3) = b \\
 .................... \\
 x^{(0)}(n) + \alpha  z^{(1)}(n) = b
-\end{dcases}</script><p>用矩阵表示<br><img src="/blog_image/2024_4_25_5.png" alt="alt text"></p>
+
+   \end{aligned}
+\right.</script><p>用矩阵表示<br><img src="/blog_image/2024_4_25_5.png" alt="alt text"></p>
 <p>于是<code>GM(1, 1)</code>模型可以表示为$Y = Bu$<br>所以现在归结与求<code>a</code>和<code>b</code>的值<br>可以使用最小二乘法来求解<br>$\hat{u}$ = $(B^{T}B^{-1})B^{T}Y$</p>
 <h2 id="建立GM-1-1-灰色预测的步骤"><a href="#建立GM-1-1-灰色预测的步骤" class="headerlink" title="建立GM(1, 1)灰色预测的步骤"></a>建立GM(1, 1)灰色预测的步骤</h2><ol>
 <li><p>数据的检验与处理<br>为了保证用<code>GM(1, 1)</code>模型的可行性,要计算数据的<strong>级比</strong></p>
@@ -1537,88 +1640,6 @@ y^{(0)}(k) = x^{(0)}(k) + c</script><p><strong>注意</strong> : 如果加上了
 </ol>
 <p>这样就成功建立了GM(1, 1)模型，可以用这个模型进行预测，分析</p>
 <h2 id="案例分析-SARS病毒对城市经济的影响"><a href="#案例分析-SARS病毒对城市经济的影响" class="headerlink" title="案例分析 SARS病毒对城市经济的影响"></a>案例分析 SARS病毒对城市经济的影响</h2>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://isjmm.github.io/2024/04/24/%E6%9C%AA%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="RookieL">
-      <meta itemprop="description" content="简单的个人博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RookieL的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/04/24/%E6%9C%AA%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">未解决的问题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2024-04-24 23:25:04 / Modified: 23:28:08" itemprop="dateCreated datePublished" datetime="2024-04-24T23:25:04+08:00">2024-04-24</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BD%91%E7%AB%99%E9%83%A8%E7%BD%B2%E9%97%AE%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">网站部署问题</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>45</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="一"><a href="#一" class="headerlink" title="一"></a>一</h2><p>部署到网站上面还是自动生成<code>About</code>文件，删除了还是再一次部署之后还是会出现，暂时为解决</p>
-
       
     </div>
 
@@ -1702,7 +1723,7 @@ y^{(0)}(k) = x^{(0)}(k) + c</script><p><strong>注意</strong> : 如果加上了
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1817,6 +1838,7 @@ y^{(0)}(k) = x^{(0)}(k) + c</script><p><strong>注意</strong> : 如果加上了
   if (typeof MathJax === 'undefined') {
     window.MathJax = {
       loader: {
+          load: ['[tex]/mhchem'],
         source: {
           '[tex]/amsCd': '[tex]/amscd',
           '[tex]/AMScd': '[tex]/amscd'
@@ -1824,6 +1846,7 @@ y^{(0)}(k) = x^{(0)}(k) + c</script><p><strong>注意</strong> : 如果加上了
       },
       tex: {
         inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
         tags: 'ams'
       },
       options: {
