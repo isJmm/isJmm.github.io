@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"isjmm.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="1463. 摘樱桃 II难度:  困难  题目：  给你一个 rows x cols 的矩阵 grid 来表示一块樱桃地。 grid 中每个格子的数字表示你能获得的樱桃数目。 你有两个机器人帮你收集樱桃，机器人 1 从左上角格子 (0,0) 出发，机器人 2 从右上角格子 (0, cols-1) 出发。 请你按照如下规则，返回两个机器人能收集的最多樱桃数目：  从格子 (i,j) 出发，机器人可以">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LC1463摘樱桃II">
+<meta property="og:url" content="https://isjmm.github.io/2024/05/08/LC1463%E6%91%98%E6%A8%B1%E6%A1%83II/index.html">
+<meta property="og:site_name" content="RookieL的个人博客">
+<meta property="og:description" content="1463. 摘樱桃 II难度:  困难  题目：  给你一个 rows x cols 的矩阵 grid 来表示一块樱桃地。 grid 中每个格子的数字表示你能获得的樱桃数目。 你有两个机器人帮你收集樱桃，机器人 1 从左上角格子 (0,0) 出发，机器人 2 从右上角格子 (0, cols-1) 出发。 请你按照如下规则，返回两个机器人能收集的最多樱桃数目：  从格子 (i,j) 出发，机器人可以">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2020/05/30/sample_2_1802.png">
+<meta property="article:published_time" content="2024-05-08T15:18:36.000Z">
+<meta property="article:modified_time" content="2024-05-08T15:20:32.337Z">
+<meta property="article:author" content="RookieL">
+<meta property="article:tag" content="algorithm">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2020/05/30/sample_2_1802.png">
+
+<link rel="canonical" href="https://isjmm.github.io/2024/05/08/LC1463%E6%91%98%E6%A8%B1%E6%A1%83II/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>LC1463摘樱桃II | RookieL的个人博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">RookieL的个人博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://isjmm.github.io/2024/05/08/LC1463%E6%91%98%E6%A8%B1%E6%A1%83II/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="RookieL">
+      <meta itemprop="description" content="简单的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RookieL的个人博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          LC1463摘樱桃II
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2024-05-08 23:18:36 / Modified: 23:20:32" itemprop="dateCreated datePublished" datetime="2024-05-08T23:18:36+08:00">2024-05-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LC/" itemprop="url" rel="index"><span itemprop="name">LC</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>2.3k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="1463-摘樱桃-II"><a href="#1463-摘樱桃-II" class="headerlink" title="1463. 摘樱桃 II"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/cherry-pickup-ii/">1463. 摘樱桃 II</a></h2><p>难度: <font color = red> 困难 </font></p>
+<p>题目：</p>
+<blockquote>
+<p>给你一个 <code>rows x cols</code> 的矩阵 <code>grid</code> 来表示一块樱桃地。 <code>grid</code> 中每个格子的数字表示你能获得的樱桃数目。</p>
+<p>你有两个机器人帮你收集樱桃，机器人 1 从左上角格子 <code>(0,0)</code> 出发，机器人 2 从右上角格子 <code>(0, cols-1)</code> 出发。</p>
+<p>请你按照如下规则，返回两个机器人能收集的最多樱桃数目：</p>
+<ul>
+<li>从格子 <code>(i,j)</code> 出发，机器人可以移动到格子 <code>(i+1, j-1)</code>，<code>(i+1, j)</code> 或者 <code>(i+1, j+1)</code> 。</li>
+<li>当一个机器人经过某个格子时，它会把该格子内所有的樱桃都摘走，然后这个位置会变成空格子，即没有樱桃的格子。</li>
+<li>当两个机器人同时到达同一个格子时，它们中只有一个可以摘到樱桃。</li>
+<li>两个机器人在任意时刻都不能移动到 <code>grid</code> 外面。</li>
+<li>两个机器人最后都要到达 <code>grid</code> 最底下一行。</li>
+</ul>
+<p><strong>示例 2：</strong></p>
+<p><strong><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2020/05/30/sample_2_1802.png" alt="img"></strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入：grid = [[1,0,0,0,0,0,1],[2,0,0,0,0,3,0],[2,0,9,0,0,0,0],[0,3,0,5,4,0,0],[1,0,2,3,0,0,6]]</span><br><span class="line">输出：28</span><br><span class="line">解释：机器人 1 和机器人 2 的路径在上图中分别用绿色和蓝色表示。</span><br><span class="line">机器人 1 摘的樱桃数目为 (1 + 9 + 5 + 2) = 17 。</span><br><span class="line">机器人 2 摘的樱桃数目为 (1 + 3 + 4 + 3) = 11 。</span><br><span class="line">樱桃总数为： 17 + 11 = 28 。</span><br></pre></td></tr></table></figure>
+<p>数据范围: </p>
+<ul>
+<li><code>rows == grid.length</code></li>
+<li><code>cols == grid[i].length</code></li>
+<li><code>2 &lt;= rows, cols &lt;= 70</code></li>
+<li><code>0 &lt;= grid[i][j] &lt;= 100</code></li>
+</ul>
+</blockquote>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>这题显然是一道动态规划题，可以先思考记忆化搜素怎么实现，我们可以假设两个机器人是同时移动的，我们要记录他们的坐标，由于他们是同时移动的，那么横坐标是相同的，所以我们可以定义<code>dfs(i, j, k)</code>表示机器人<code>1</code>从<code>(i, j)</code>出发，机器人<code>2</code>从<code>(i, k)</code>出发，可以得到的最多樱桃数量，根据题目的要求，每次机器人移动有9总情况，对这九种情况取<code>max</code>即可，对于同一个点，也就是<code>j == k</code>的时候，只需要记录依次即可答案是<code>dfs(0, 0, m - 1)</code></p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">cherryPickup</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; grid)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = grid.<span class="built_in">size</span>(), m = grid[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        <span class="comment">// -1 表示没有被遍历过</span></span><br><span class="line">        vector&lt;vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&gt; <span class="built_in">f</span>(n, vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;(m, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(m, <span class="number">-1</span>)));</span><br><span class="line">    </span><br><span class="line">        function&lt;<span class="type">int</span>(<span class="type">int</span>, <span class="type">int</span>, <span class="type">int</span>)&gt; dfs = [&amp;](<span class="type">int</span> i, <span class="type">int</span> j, <span class="type">int</span> k) -&gt; <span class="type">int</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (i &gt;= n || j &lt; <span class="number">0</span> || j &gt;= m || k &lt; <span class="number">0</span> || k &gt;= m) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            <span class="type">int</span>&amp; res = f[i][j][k];</span><br><span class="line">            <span class="keyword">if</span> (res != <span class="number">-1</span>) <span class="keyword">return</span> res;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> k1 = <span class="number">-1</span>; k1 &lt;= <span class="number">1</span>; k1 ++) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> k2 = <span class="number">-1</span>; k2 &lt;= <span class="number">1</span>; k2 ++ ) &#123;</span><br><span class="line">                    res = <span class="built_in">max</span>(res, <span class="built_in">dfs</span>(i + <span class="number">1</span>, j + k1, k + k2));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            res += grid[i][j];</span><br><span class="line">            <span class="keyword">if</span> (k != j) res += grid[i][k];</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">dfs</span>(<span class="number">0</span>, <span class="number">0</span>, m - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>时间复杂度: $O(n^2 m)$</p>
+<h2 id="翻译成递推形式"><a href="#翻译成递推形式" class="headerlink" title="翻译成递推形式"></a>翻译成递推形式</h2><p>原理是一样的</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">cherryPickup</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; grid)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = grid.<span class="built_in">size</span>(), m = grid[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        <span class="comment">// -1 表示没有被遍历过</span></span><br><span class="line">        vector&lt;vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&gt; <span class="built_in">f</span>(n, vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;(m, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(m, <span class="number">-1</span>)));</span><br><span class="line">        f[<span class="number">0</span>][<span class="number">0</span>][m - <span class="number">1</span>] = grid[<span class="number">0</span>][<span class="number">0</span>] + grid[<span class="number">0</span>][m - <span class="number">1</span>];</span><br><span class="line">        <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; i ++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; m; j ++) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> k = <span class="number">0</span>; k &lt; m; k ++) &#123;</span><br><span class="line">                    <span class="type">int</span> t = INT_MIN;</span><br><span class="line">                    <span class="keyword">for</span> (<span class="type">int</span> k1 = <span class="number">-1</span>; k1 &lt;= <span class="number">1</span>; k1 ++) &#123;</span><br><span class="line">                        <span class="keyword">for</span>(<span class="type">int</span> k2 = <span class="number">-1</span>; k2 &lt;= <span class="number">1</span>; k2 ++ ) &#123;</span><br><span class="line">                            <span class="keyword">if</span> (j + k1 &lt; <span class="number">0</span> || j + k1 &gt;= m || k + k2 &lt; <span class="number">0</span> || k + k2 &gt;= m) <span class="keyword">continue</span>;</span><br><span class="line">                            t = <span class="built_in">max</span>(t, f[i - <span class="number">1</span>][j + k1][k + k2]);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span> (t != <span class="number">-1</span>)  &#123;</span><br><span class="line">                        f[i][j][k] = t + grid[i][j] + grid[i][k];</span><br><span class="line">                        <span class="keyword">if</span> (j == k) f[i][j][k] -= grid[i][j];</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span> (i == n - <span class="number">1</span>) res = <span class="built_in">max</span>(res, f[i][j][k]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>时间复杂度: $O(n^2 m)$</p>
+<h4 id="灵神超级题解"><a href="#灵神超级题解" class="headerlink" title="灵神超级题解"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/cherry-pickup-ii/solutions/2768158/jiao-ni-yi-bu-bu-si-kao-dpcong-ji-yi-hua-i70v/?envType=daily-question&amp;envId=2024-05-07">灵神超级题解</a></h4>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/algorithm/" rel="tag"># algorithm</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/05/03/LC1491%E5%8E%BB%E6%8E%89%E6%9C%80%E4%BD%8E%E5%B7%A5%E8%B5%84%E5%92%8C%E6%9C%80%E9%AB%98%E5%B7%A5%E8%B5%84%E5%90%8E%E7%9A%84%E5%B7%A5%E8%B5%84%E5%B9%B3%E5%9D%87%E5%80%BC/" rel="prev" title="LC1491去掉最低工资和最高工资后的工资平均值">
+      <i class="fa fa-chevron-left"></i> LC1491去掉最低工资和最高工资后的工资平均值
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1463-%E6%91%98%E6%A8%B1%E6%A1%83-II"><span class="nav-number">1.</span> <span class="nav-text">1463. 摘樱桃 II</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.</span> <span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BF%BB%E8%AF%91%E6%88%90%E9%80%92%E6%8E%A8%E5%BD%A2%E5%BC%8F"><span class="nav-number">4.</span> <span class="nav-text">翻译成递推形式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%81%B5%E7%A5%9E%E8%B6%85%E7%BA%A7%E9%A2%98%E8%A7%A3"><span class="nav-number">4.0.1.</span> <span class="nav-text">灵神超级题解</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">RookieL</p>
+  <div class="site-description" itemprop="description">简单的个人博客</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">RookieL</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">25k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">23 mins.</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

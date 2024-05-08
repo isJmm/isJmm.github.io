@@ -162,6 +162,117 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://isjmm.github.io/2024/05/08/LC1463%E6%91%98%E6%A8%B1%E6%A1%83II/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="RookieL">
+      <meta itemprop="description" content="简单的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RookieL的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/05/08/LC1463%E6%91%98%E6%A8%B1%E6%A1%83II/" class="post-title-link" itemprop="url">LC1463摘樱桃II</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2024-05-08 23:18:36 / Modified: 23:20:32" itemprop="dateCreated datePublished" datetime="2024-05-08T23:18:36+08:00">2024-05-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LC/" itemprop="url" rel="index"><span itemprop="name">LC</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>2.3k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1463-摘樱桃-II"><a href="#1463-摘樱桃-II" class="headerlink" title="1463. 摘樱桃 II"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/cherry-pickup-ii/">1463. 摘樱桃 II</a></h2><p>难度: <font color = red> 困难 </font></p>
+<p>题目：</p>
+<blockquote>
+<p>给你一个 <code>rows x cols</code> 的矩阵 <code>grid</code> 来表示一块樱桃地。 <code>grid</code> 中每个格子的数字表示你能获得的樱桃数目。</p>
+<p>你有两个机器人帮你收集樱桃，机器人 1 从左上角格子 <code>(0,0)</code> 出发，机器人 2 从右上角格子 <code>(0, cols-1)</code> 出发。</p>
+<p>请你按照如下规则，返回两个机器人能收集的最多樱桃数目：</p>
+<ul>
+<li>从格子 <code>(i,j)</code> 出发，机器人可以移动到格子 <code>(i+1, j-1)</code>，<code>(i+1, j)</code> 或者 <code>(i+1, j+1)</code> 。</li>
+<li>当一个机器人经过某个格子时，它会把该格子内所有的樱桃都摘走，然后这个位置会变成空格子，即没有樱桃的格子。</li>
+<li>当两个机器人同时到达同一个格子时，它们中只有一个可以摘到樱桃。</li>
+<li>两个机器人在任意时刻都不能移动到 <code>grid</code> 外面。</li>
+<li>两个机器人最后都要到达 <code>grid</code> 最底下一行。</li>
+</ul>
+<p><strong>示例 2：</strong></p>
+<p><strong><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2020/05/30/sample_2_1802.png" alt="img"></strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入：grid = [[1,0,0,0,0,0,1],[2,0,0,0,0,3,0],[2,0,9,0,0,0,0],[0,3,0,5,4,0,0],[1,0,2,3,0,0,6]]</span><br><span class="line">输出：28</span><br><span class="line">解释：机器人 1 和机器人 2 的路径在上图中分别用绿色和蓝色表示。</span><br><span class="line">机器人 1 摘的樱桃数目为 (1 + 9 + 5 + 2) = 17 。</span><br><span class="line">机器人 2 摘的樱桃数目为 (1 + 3 + 4 + 3) = 11 。</span><br><span class="line">樱桃总数为： 17 + 11 = 28 。</span><br></pre></td></tr></table></figure>
+<p>数据范围: </p>
+<ul>
+<li><code>rows == grid.length</code></li>
+<li><code>cols == grid[i].length</code></li>
+<li><code>2 &lt;= rows, cols &lt;= 70</code></li>
+<li><code>0 &lt;= grid[i][j] &lt;= 100</code></li>
+</ul>
+</blockquote>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>这题显然是一道动态规划题，可以先思考记忆化搜素怎么实现，我们可以假设两个机器人是同时移动的，我们要记录他们的坐标，由于他们是同时移动的，那么横坐标是相同的，所以我们可以定义<code>dfs(i, j, k)</code>表示机器人<code>1</code>从<code>(i, j)</code>出发，机器人<code>2</code>从<code>(i, k)</code>出发，可以得到的最多樱桃数量，根据题目的要求，每次机器人移动有9总情况，对这九种情况取<code>max</code>即可，对于同一个点，也就是<code>j == k</code>的时候，只需要记录依次即可答案是<code>dfs(0, 0, m - 1)</code></p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">cherryPickup</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; grid)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = grid.<span class="built_in">size</span>(), m = grid[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        <span class="comment">// -1 表示没有被遍历过</span></span><br><span class="line">        vector&lt;vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&gt; <span class="built_in">f</span>(n, vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;(m, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(m, <span class="number">-1</span>)));</span><br><span class="line">    </span><br><span class="line">        function&lt;<span class="type">int</span>(<span class="type">int</span>, <span class="type">int</span>, <span class="type">int</span>)&gt; dfs = [&amp;](<span class="type">int</span> i, <span class="type">int</span> j, <span class="type">int</span> k) -&gt; <span class="type">int</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (i &gt;= n || j &lt; <span class="number">0</span> || j &gt;= m || k &lt; <span class="number">0</span> || k &gt;= m) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            <span class="type">int</span>&amp; res = f[i][j][k];</span><br><span class="line">            <span class="keyword">if</span> (res != <span class="number">-1</span>) <span class="keyword">return</span> res;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> k1 = <span class="number">-1</span>; k1 &lt;= <span class="number">1</span>; k1 ++) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> k2 = <span class="number">-1</span>; k2 &lt;= <span class="number">1</span>; k2 ++ ) &#123;</span><br><span class="line">                    res = <span class="built_in">max</span>(res, <span class="built_in">dfs</span>(i + <span class="number">1</span>, j + k1, k + k2));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            res += grid[i][j];</span><br><span class="line">            <span class="keyword">if</span> (k != j) res += grid[i][k];</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">dfs</span>(<span class="number">0</span>, <span class="number">0</span>, m - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>时间复杂度: $O(n^2 m)$</p>
+<h2 id="翻译成递推形式"><a href="#翻译成递推形式" class="headerlink" title="翻译成递推形式"></a>翻译成递推形式</h2><p>原理是一样的</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">cherryPickup</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; grid)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = grid.<span class="built_in">size</span>(), m = grid[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        <span class="comment">// -1 表示没有被遍历过</span></span><br><span class="line">        vector&lt;vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&gt; <span class="built_in">f</span>(n, vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;(m, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(m, <span class="number">-1</span>)));</span><br><span class="line">        f[<span class="number">0</span>][<span class="number">0</span>][m - <span class="number">1</span>] = grid[<span class="number">0</span>][<span class="number">0</span>] + grid[<span class="number">0</span>][m - <span class="number">1</span>];</span><br><span class="line">        <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; i ++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; m; j ++) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> k = <span class="number">0</span>; k &lt; m; k ++) &#123;</span><br><span class="line">                    <span class="type">int</span> t = INT_MIN;</span><br><span class="line">                    <span class="keyword">for</span> (<span class="type">int</span> k1 = <span class="number">-1</span>; k1 &lt;= <span class="number">1</span>; k1 ++) &#123;</span><br><span class="line">                        <span class="keyword">for</span>(<span class="type">int</span> k2 = <span class="number">-1</span>; k2 &lt;= <span class="number">1</span>; k2 ++ ) &#123;</span><br><span class="line">                            <span class="keyword">if</span> (j + k1 &lt; <span class="number">0</span> || j + k1 &gt;= m || k + k2 &lt; <span class="number">0</span> || k + k2 &gt;= m) <span class="keyword">continue</span>;</span><br><span class="line">                            t = <span class="built_in">max</span>(t, f[i - <span class="number">1</span>][j + k1][k + k2]);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span> (t != <span class="number">-1</span>)  &#123;</span><br><span class="line">                        f[i][j][k] = t + grid[i][j] + grid[i][k];</span><br><span class="line">                        <span class="keyword">if</span> (j == k) f[i][j][k] -= grid[i][j];</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span> (i == n - <span class="number">1</span>) res = <span class="built_in">max</span>(res, f[i][j][k]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>时间复杂度: $O(n^2 m)$</p>
+<h4 id="灵神超级题解"><a href="#灵神超级题解" class="headerlink" title="灵神超级题解"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/cherry-pickup-ii/solutions/2768158/jiao-ni-yi-bu-bu-si-kao-dpcong-ji-yi-hua-i70v/?envType=daily-question&amp;envId=2024-05-07">灵神超级题解</a></h4>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://isjmm.github.io/2024/05/03/LC1491%E5%8E%BB%E6%8E%89%E6%9C%80%E4%BD%8E%E5%B7%A5%E8%B5%84%E5%92%8C%E6%9C%80%E9%AB%98%E5%B7%A5%E8%B5%84%E5%90%8E%E7%9A%84%E5%B7%A5%E8%B5%84%E5%B9%B3%E5%9D%87%E5%80%BC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1434,226 +1545,6 @@ nvim">OneDark</a></p>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://isjmm.github.io/2024/04/25/%E7%81%B0%E8%89%B2%E9%A2%84%E6%B5%8B%E6%A8%A1%E5%9E%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="RookieL">
-      <meta itemprop="description" content="简单的个人博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RookieL的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/04/25/%E7%81%B0%E8%89%B2%E9%A2%84%E6%B5%8B%E6%A8%A1%E5%9E%8B/" class="post-title-link" itemprop="url">灰色预测模型</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2024-04-25 15:46:00" itemprop="dateCreated datePublished" datetime="2024-04-25T15:46:00+08:00">2024-04-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-05-02 23:40:12" itemprop="dateModified" datetime="2024-05-02T23:40:12+08:00">2024-05-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" itemprop="url" rel="index"><span itemprop="name">数学建模</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>3.6k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>3 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="灰色预测模型的基本定义"><a href="#灰色预测模型的基本定义" class="headerlink" title="灰色预测模型的基本定义"></a>灰色预测模型的基本定义</h2><p>灰色预测是一种含有不确定因素的因素进行预测的方法，通常是在一定范围内变化的，与时间有关的灰色过程进行预测</p>
-<h2 id="灰色预测的常见类型"><a href="#灰色预测的常见类型" class="headerlink" title="灰色预测的常见类型"></a>灰色预测的常见类型</h2><ul>
-<li>灰度时间序列预测</li>
-<li>畸变预测</li>
-<li>系统预测</li>
-<li>拓扑预测</li>
-</ul>
-<h2 id="一-灰色关联度分析"><a href="#一-灰色关联度分析" class="headerlink" title="一. 灰色关联度分析"></a>一. 灰色关联度分析</h2><p>优点:<br>一. 不要求大量的数据<br>二. 计算量先对较小<br>三. 出现反常的概率较低</p>
-<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol>
-<li>选取参考数列<br>这个数列的选择就是每一个栏目的最好情况组成的数列</li>
-</ol>
-<p>假设此时有m个比较数列</p>
-<script type="math/tex; mode=display">
-\begin{align*}
-X_i = {X_i(k)|k = 1, 2, ..., n} = {X_i(1), ... , X_i(n)} (i = 1, 2, ... , m)
-\end{align*}</script><ol>
-<li><p>计算关联系数<br><img src="/blog_image/2024_4_25_1.png" alt="alt text"><br>这个是比较数列$X_i$对参考数列$X_0$在k时刻的关联系数<br>其中 $\rho$ $\in$ $[0, +inf]$, $\rho$越大，分辨率越大，反之越小</p>
-</li>
-<li><p>计算关联度</p>
-<script type="math/tex; mode=display">
-\begin{align*}
-&r_i = \frac{1}{n}\sum_{k = 1}^{n}\zeta_i(k)&
-\end{align*}</script></li>
-<li><p>正相关和负相关的计算</p>
-<script type="math/tex; mode=display">
-\begin{align*}
-&\sigma_i = \sum_{k = 1}^{n} {kX_i(k)} - \sum_{k = 1}^{n}{X_i(k)}\sum_{k = 1}^{n}\frac{k}{n}&, \\
-&\sigma_n = \sum_{k = 1}^{n} {k^{2}} - \frac{\sum_{k = 1}^{n}{k^{2}} }{n}
-\end{align*}</script><p>如果</p>
-<script type="math/tex; mode=display">
-sign(\frac{\sigma_i}{\sigma_n}) = sign(\frac{\sigma_j}{\sigma_n})</script><p>则 $X_i$ 就是和 $X_j$ 正相关</p>
-<p>如果</p>
-<script type="math/tex; mode=display">
-sign(\frac{\sigma_i}{\sigma_n}) = -sign(\frac{\sigma_j}{\sigma_n})</script><p>则$X_i$就是和$X_j$负相关</p>
-</li>
-</ol>
-<h2 id="案例分析"><a href="#案例分析" class="headerlink" title="案例分析"></a>案例分析</h2><p>利用灰色关联分析对6位教师工作状况进行综合分析</p>
-<p>分析指标包括：<strong>专业素质、外语水平、教学工作量、科研成果、论文、著作与出勤．</strong></p>
-<p>数据表格如下<br><img src="/blog_image/2024_4_25_2.png" alt="alt text"></p>
-<ol>
-<li>首先确定参考数列<script type="math/tex; mode=display">{x_0} = \{9, 9, 9, 9, 8, 9, 9\}</script></li>
-<li>计算 |$x_0(k) - x_j(k)$| 得到下表格<br><img src="/blog_image/2024_4_25_3.png" alt="alt text"></li>
-<li>求最值<script type="math/tex; mode=display">
-\min_{i = 1}^{n}\min_{k = 1}^{m}|x_0(k) - x_i(k)| = \min(0, 1, 0, 1, 0, 0) = 0</script><script type="math/tex; mode=display">
-\max_{i = 1}^{n}\max_{k = 1}^{m}|x_0(k) - x_i(k)| = \max(7, 6, 5, 6, 6, 5) = 7 \\</script></li>
-<li>根据公式，取$\rho$ = 0.5得到下列式子<script type="math/tex; mode=display">
-\begin{align*}
-&\zeta_1(1) = \frac{0 + 0.5\times{7}}{1 + 0.5\times{7}} = 0.778& \\
-&\zeta_1(2) = \frac{0 + 0.5\times{7}}{0 + 0.5\times{7}} = 1.000& \\
-&\zeta_1(3) = 0.778& \\ 
-&\zeta_1(4) = 0.636& \\ 
-&\zeta_1(5) = 0.467& \\
-&\zeta_1(6) = 0.333& \\ 
-&\zeta_1(7) = 1.000& \\
-\end{align*}</script></li>
-<li>同理得出其他值<br><img src="/blog_image/2024_4_25_4.png" alt="alt text"></li>
-<li>分别计算每个人指标关联系数的均值<script type="math/tex; mode=display">
-\begin{align*}
-& r_{1} = \frac{0.778 + 1.000 + 0.778 + 0.636 + 0.467 + 0.333 + 1.000}{7} = 0.703& \\
-& r_2 = 0.614, r_3 = 0.680, r_4 = 0.599, r_5 = 0.683, r_6 = 0.658.&
-\end{align*}</script></li>
-<li><p>根据 $r_0$ 排序，得出最终的结果</p>
-<p>最优的是 第 1 位， 最差的是第 4 位，通过这样就可很清晰得出结论，做出相应得判断</p>
-</li>
-</ol>
-<h2 id="二、灰色生成数列"><a href="#二、灰色生成数列" class="headerlink" title="二、灰色生成数列"></a>二、灰色生成数列</h2><p>将不具有规律性的数据通过变换生成有一定规律性的过程</p>
-<h2 id="累加生成"><a href="#累加生成" class="headerlink" title="累加生成"></a>累加生成</h2><p>把数列各项（时刻）数据依次累加的过程称为累加生成， 就是利用前缀和思想进行累加，相当于积分</p>
-<script type="math/tex; mode=display">
-\begin{align*}
-&x^{(0)} = (x^{(0)}(1), ..., x^{(0)}(n)) \\
-&x^{(1)}(k) = \sum_{i = 1}^{k}x^{(0)}(i) \\
-&x^{(1)} = (x^{(1)}(1), ..., x^{(1)}(n)) \\ 
-\end{align*}</script><p>这是一次累加的结果，可以多次进行相同的操作得到<code>r</code>次累加的结果</p>
-<h2 id="累减生成"><a href="#累减生成" class="headerlink" title="累减生成"></a>累减生成</h2><p>把数列各项（时刻）数据依次累加的过程称为累加生成过程<br>由累加生成过程所得的数列称为<br>累加生成数列。</p>
-<p>原始数列为 ：</p>
-<script type="math/tex; mode=display">
-x^{(0)} = (x^{(0)}(1), ..., x^{(0)}(n)</script><p>生成得数列为：</p>
-<script type="math/tex; mode=display">
-x^{(0)}(k) = x^{(1)}(k) - x^{(1)}(k - 1) (k = 2, 3, ...)</script><p>称所得到的数列$x^{(0)}$为$x^{(1)}$的次累减生成数列。</p>
-<h2 id="加权邻值生成"><a href="#加权邻值生成" class="headerlink" title="加权邻值生成"></a>加权邻值生成</h2><p>原始数列为 ：</p>
-<script type="math/tex; mode=display">
-x^{(0)} = (x^{(0)}(1), ..., x^{(0)}(n)</script><p>对于 $\alpha\in[0, 1]$<br>令 </p>
-<script type="math/tex; mode=display">
-z^{(0)}(k) = \alpha x^{(0)}(k) - (1 - \alpha)x^{(0)}(k - 1) (k = 2, 3, ...)</script><p>特别的，当 $\alpha$ = 0.5 时，生成得数列称为等权邻值生成数  </p>
-<h2 id="累减数列的求导性质"><a href="#累减数列的求导性质" class="headerlink" title="累减数列的求导性质"></a>累减数列的求导性质</h2><script type="math/tex; mode=display">
-\frac{dx(k)}{dt} = \lim_{\Delta t\to 0} \frac{x(k) - x(k - \Delta t)}{\Delta t}</script><p>生成的累减数列相当于 $\Delta t = 1$</p>
-<h2 id="GM-1-1-灰色模型-G-gray-灰色，-M-model-模型"><a href="#GM-1-1-灰色模型-G-gray-灰色，-M-model-模型" class="headerlink" title="GM(1, 1)灰色模型 (G gray 灰色， M model 模型)"></a>GM(1, 1)灰色模型 (G gray 灰色， M model 模型)</h2><h3 id="模型建立过程"><a href="#模型建立过程" class="headerlink" title="模型建立过程"></a>模型建立过程</h3><p>设 $x^{(0)} = (x^{(0)}(1), …, x^{(0)}(n)$  </p>
-<p>一次累计生成数列是 $x^{(1)} = (x^{(1)}(1), …, x^{(1)}(n)$  </p>
-<p>定义<strong>灰导数</strong>是 $d(k) = x^{(0)}(k) = x^{(1)}(k) - x^{(1)}(k - 1)$</p>
-<p>令 $z^{(1)}(k) = \alpha x^{(1)}(k) + (1 - \alpha) x^{(1)}(k - 1)$ </p>
-<p>于是定义<code>GM(1, 1)</code>灰微分方程模型 </p>
-<script type="math/tex; mode=display">
-\begin{align*}
-&d(k) + \alpha  z^{(1)}(k) = b \\
-即或\quad &x^{(0)}(k) + \alpha  z^{(1)}(k) = b
-\end{align*}</script><p>式子中$\quad$$x^{(0)}$表示灰导数，<code>a</code>表示发展系数，$z^{(1)}(k)$白化背景值, <code>b</code>称为灰作用量</p>
-<p>将时刻表 <code>k = 2, 3, ...</code>带入式子中得到</p>
-<script type="math/tex; mode=display">\left\{
-   \begin{aligned}
-   x^{(0)}(2) + \alpha  z^{(1)}(2) = b \\
-x^{(0)}(3) + \alpha  z^{(1)}(3) = b \\
-.................... \\
-x^{(0)}(n) + \alpha  z^{(1)}(n) = b
-
-   \end{aligned}
-\right.</script><p>用矩阵表示<br><img src="/blog_image/2024_4_25_5.png" alt="alt text"></p>
-<p>于是<code>GM(1, 1)</code>模型可以表示为$Y = Bu$<br>所以现在归结与求<code>a</code>和<code>b</code>的值<br>可以使用最小二乘法来求解<br>$\hat{u}$ = $(B^{T}B^{-1})B^{T}Y$</p>
-<h2 id="建立GM-1-1-灰色预测的步骤"><a href="#建立GM-1-1-灰色预测的步骤" class="headerlink" title="建立GM(1, 1)灰色预测的步骤"></a>建立GM(1, 1)灰色预测的步骤</h2><ol>
-<li><p>数据的检验与处理<br>为了保证用<code>GM(1, 1)</code>模型的可行性,要计算数据的<strong>级比</strong></p>
-<script type="math/tex; mode=display">\lambda = \frac{x^{(0)}(k - 1)}{x^{(0)}(k)}</script><p>如果在覆盖区间 $X = (e^{\frac{-2}{n + 1}}, e^{\frac{2}{n + 1}})$ </p>
-<p>此时就可以用这个模型，如果不在，则要进行平移变换，也就是数据同时加上或者减去一个数字，使级比在区间范围之内</p>
-<script type="math/tex; mode=display">
-y^{(0)}(k) = x^{(0)}(k) + c</script><p><strong>注意</strong> : 如果加上了一个数，那么最后的结果要减去这个数字，要不然不准确</p>
-</li>
-<li><p>建立<code>GM(1, 1)</code>模型</p>
-<p>$x^{(0)}(k) + \alpha  z^{(1)}(k) = b$ </p>
-<p>利用最小二乘法得到a和b的值，于是得到白化模型</p>
-<script type="math/tex; mode=display">
-\frac{dx(t)}{dt} + \alpha  z^{(1)}(k) = b</script><p>解得</p>
-<script type="math/tex; mode=display">
-{x}^{(1)}(t) = (x^{(0)}(1) - \frac{b}{a})e^{-a(t - 1)} + \frac{b}{a}</script><p>于是得到预测值</p>
-<script type="math/tex; mode=display">
-\hat{x}^{(1)}(k + 1) = (x^{(0)}(1) - \frac{b}{a})e^{-ak} + \frac{b}{a}</script><p>相应的得到相应的预测值</p>
-<script type="math/tex; mode=display">
-\hat{x}^{(0)}(k + 1) = \hat{x}^{(1)}(k + 1) - \hat{x}^{(1)}(k)</script></li>
-<li>检验预测值</li>
-<li>方法一：残差检验<script type="math/tex; mode=display">
-\varepsilon(k) = \frac{x^{(0)}(k) - \hat{x}^{(0)}(k)}{x^{(0)}(k)}</script>要满足<script type="math/tex; mode=display">
-|\varepsilon| \le 0.2</script>方法二：级比偏差值检验<script type="math/tex; mode=display">
-\rho(k) = 1 - \frac{1 - 0.5a}{1+ 0.5a}\lambda(k)</script>要满足 <script type="math/tex; mode=display">
-|\rho(k)| \le 0.2</script></li>
-</ol>
-<p>这样就成功建立了GM(1, 1)模型，可以用这个模型进行预测，分析</p>
-<h2 id="案例分析-SARS病毒对城市经济的影响"><a href="#案例分析-SARS病毒对城市经济的影响" class="headerlink" title="案例分析 SARS病毒对城市经济的影响"></a>案例分析 SARS病毒对城市经济的影响</h2>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1723,7 +1614,7 @@ y^{(0)}(k) = x^{(0)}(k) + c</script><p><strong>注意</strong> : 如果加上了
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1772,12 +1663,12 @@ y^{(0)}(k) = x^{(0)}(k) + c</script><p><strong>注意</strong> : 如果加上了
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">23k</span>
+    <span title="Symbols count total">25k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">21 mins.</span>
+    <span title="Reading time total">23 mins.</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
   </div>
