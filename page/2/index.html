@@ -162,6 +162,107 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://isjmm.github.io/2024/04/29/LC1329%E5%B0%86%E7%9F%A9%E9%98%B5%E6%8C%89%E5%AF%B9%E8%A7%92%E7%BA%BF%E6%8E%92%E5%BA%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="RookieL">
+      <meta itemprop="description" content="简单的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RookieL的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/04/29/LC1329%E5%B0%86%E7%9F%A9%E9%98%B5%E6%8C%89%E5%AF%B9%E8%A7%92%E7%BA%BF%E6%8E%92%E5%BA%8F/" class="post-title-link" itemprop="url">LC1329将矩阵按对角线排序</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2024-04-29 19:36:32 / Modified: 19:52:25" itemprop="dateCreated datePublished" datetime="2024-04-29T19:36:32+08:00">2024-04-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LC/" itemprop="url" rel="index"><span itemprop="name">LC</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.3k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1329-将矩阵按对角线排序"><a href="#1329-将矩阵按对角线排序" class="headerlink" title="1329. 将矩阵按对角线排序"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/sort-the-matrix-diagonally/">1329. 将矩阵按对角线排序</a></h2><p>难度：<font color = gold> 中等 </font></p>
+<p>题目大意：</p>
+<blockquote>
+<p><strong>矩阵对角线</strong> 是一条从矩阵最上面行或者最左侧列中的某个元素开始的对角线，沿右下方向一直到矩阵末尾的元素。例如，矩阵 <code>mat</code> 有 <code>6</code> 行 <code>3</code> 列，从 <code>mat[2][0]</code> 开始的 <strong>矩阵对角线</strong> 将会经过 <code>mat[2][0]</code>、<code>mat[3][1]</code> 和 <code>mat[4][2]</code> 。</p>
+<p>给你一个 <code>m * n</code> 的整数矩阵 <code>mat</code> ，请你将同一条 <strong>矩阵对角线</strong> 上的元素按升序排序后，返回排好序的矩阵。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2020/01/25/1482_example_1_2.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：mat = [[3,3,1,1],[2,2,1,2],[1,1,1,2]]</span><br><span class="line">输出：[[1,1,1,1],[1,2,2,2],[1,2,3,3]]</span><br></pre></td></tr></table></figure>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>m == mat.length</code></li>
+<li><code>n == mat[i].length</code></li>
+<li><code>1 &lt;= m, n &lt;= 100</code></li>
+<li><code>1 &lt;= mat[i][j] &lt;= 100</code></li>
+</ul>
+</blockquote>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>直接将对角线的元素进行归类，排序号之后依次填回去即可，那么怎么进行归类呢，我们知道对角线的斜率是相同的，也就是对角线中元素的横坐标减去纵坐标是相同的，所以我们可以用这个来进行归类，现在又有一个问题，就是可能出现负数，<code>x - y</code>最小值就是<code>-y</code>，那么可以在这个基础上加上纵坐标的最大值，假设是<code>m</code>，那么现在每个对角线可以映射到<code>x - y + m</code>这个值肯定是大于<code>0</code>的，接下来就是怎么填回去，我们发现，当<code>x - y &lt;= m</code>的时候，<code>x</code>从<code>0</code>开始，y对应就是<code>m - x + y</code>，当<code>x - y &gt; m</code>的时候，<code>y</code> 从<code>0</code>开始，那么<code>x</code>对应的就是<code>x - y - m</code>，用一个<code>while</code>循环即可</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">diagonalSort</span>(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; mat) &#123;</span><br><span class="line">        <span class="type">int</span> n = mat.<span class="built_in">size</span>(), m = mat[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; cell[n + m + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i ++ ) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; m; j ++) &#123;</span><br><span class="line">                <span class="type">int</span> t = i - j + m;</span><br><span class="line">                cell[t].<span class="built_in">push_back</span>(mat[i][j]);</span><br><span class="line">            &#125; </span><br><span class="line">        &#125;</span><br><span class="line">        function&lt;<span class="type">void</span>(<span class="type">int</span>, <span class="type">int</span>, <span class="type">int</span>)&gt; work = [&amp;](<span class="type">int</span> cur, <span class="type">int</span> x, <span class="type">int</span> y) -&gt; <span class="type">void</span> &#123;</span><br><span class="line">            <span class="type">int</span> idx = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span> (x &lt; n &amp;&amp; y &lt; m) &#123;</span><br><span class="line">                mat[x][y] = cell[cur][idx ++];</span><br><span class="line">                x ++, y ++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; n + m; i ++) &#123;</span><br><span class="line">            <span class="built_in">sort</span>(cell[i].<span class="built_in">begin</span>(), cell[i].<span class="built_in">end</span>());</span><br><span class="line">            <span class="keyword">if</span> (i &lt;= m) <span class="built_in">work</span>(i, <span class="number">0</span>, m - i);</span><br><span class="line">            <span class="keyword">else</span> <span class="built_in">work</span>(i, i - m, <span class="number">0</span>);</span><br><span class="line">        &#125; </span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> mat;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>时间复杂度：$O( nm log(nm))$</p>
+<p>结束了</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://isjmm.github.io/2024/04/28/%E4%B8%80%E7%BB%B4%E4%BA%8C%E7%BB%B4%E6%8F%92%E5%80%BC%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%E5%8F%8A%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1314,7 +1415,7 @@ y^{(0)}(k) = x^{(0)}(k) + c</script><p><strong>注意</strong> : 如果加上了
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1363,12 +1464,12 @@ y^{(0)}(k) = x^{(0)}(k) + c</script><p><strong>注意</strong> : 如果加上了
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">30k</span>
+    <span title="Symbols count total">31k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">27 mins.</span>
+    <span title="Reading time total">28 mins.</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
   </div>
