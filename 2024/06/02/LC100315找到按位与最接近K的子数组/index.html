@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"isjmm.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="2639. 查询网格图中每一列的宽度难度：  简单  题目描述:  给你一个下标从 0 开始的 m x n 整数矩阵 grid 。矩阵中某一列的宽度是这一列数字的最大 字符串长度 。  比方说，如果 grid &#x3D; [[-10], [3], [12]] ，那么唯一一列的宽度是 3 ，因为 -10 的字符串长度为 3 。  请你返回一个大小为 n 的整数数组 ans ，其中 ans[i] 是第 i 列">
+  <meta name="description" content="100315. 找到按位与最接近 K 的子数组难度： 困难  题目大意：  给你一个数组 nums 和一个整数 k 。你需要找到 nums 的一个  子数组 ，满足子数组中所有元素按位与运算 AND 的值与 k 的 绝对差 尽可能 小 。换言之，你需要选择一个子数组 nums[l..r] 满足 |k - (nums[l] AND nums[l + 1] ... AND nums[r])| 最小。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LC2639查询网格图中每一列的宽度">
-<meta property="og:url" content="https://isjmm.github.io/2024/04/27/LC2639%E6%9F%A5%E8%AF%A2%E7%BD%91%E6%A0%BC%E5%9B%BE%E4%B8%AD%E6%AF%8F%E4%B8%80%E5%88%97%E7%9A%84%E5%AE%BD%E5%BA%A6/index.html">
+<meta property="og:title" content="LC100315找到按位与最接近K的子数组">
+<meta property="og:url" content="https://isjmm.github.io/2024/06/02/LC100315%E6%89%BE%E5%88%B0%E6%8C%89%E4%BD%8D%E4%B8%8E%E6%9C%80%E6%8E%A5%E8%BF%91K%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/index.html">
 <meta property="og:site_name" content="RookieL的个人博客">
-<meta property="og:description" content="2639. 查询网格图中每一列的宽度难度：  简单  题目描述:  给你一个下标从 0 开始的 m x n 整数矩阵 grid 。矩阵中某一列的宽度是这一列数字的最大 字符串长度 。  比方说，如果 grid &#x3D; [[-10], [3], [12]] ，那么唯一一列的宽度是 3 ，因为 -10 的字符串长度为 3 。  请你返回一个大小为 n 的整数数组 ans ，其中 ans[i] 是第 i 列">
+<meta property="og:description" content="100315. 找到按位与最接近 K 的子数组难度： 困难  题目大意：  给你一个数组 nums 和一个整数 k 。你需要找到 nums 的一个  子数组 ，满足子数组中所有元素按位与运算 AND 的值与 k 的 绝对差 尽可能 小 。换言之，你需要选择一个子数组 nums[l..r] 满足 |k - (nums[l] AND nums[l + 1] ... AND nums[r])| 最小。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-04-27T08:02:07.000Z">
-<meta property="article:modified_time" content="2024-05-10T12:53:30.160Z">
+<meta property="article:published_time" content="2024-06-02T07:14:43.000Z">
+<meta property="article:modified_time" content="2024-06-02T07:15:30.076Z">
 <meta property="article:author" content="RookieL">
 <meta property="article:tag" content="algorithm">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://isjmm.github.io/2024/04/27/LC2639%E6%9F%A5%E8%AF%A2%E7%BD%91%E6%A0%BC%E5%9B%BE%E4%B8%AD%E6%AF%8F%E4%B8%80%E5%88%97%E7%9A%84%E5%AE%BD%E5%BA%A6/">
+<link rel="canonical" href="https://isjmm.github.io/2024/06/02/LC100315%E6%89%BE%E5%88%B0%E6%8C%89%E4%BD%8D%E4%B8%8E%E6%9C%80%E6%8E%A5%E8%BF%91K%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>LC2639查询网格图中每一列的宽度 | RookieL的个人博客</title>
+  <title>LC100315找到按位与最接近K的子数组 | RookieL的个人博客</title>
   
 
 
@@ -166,7 +166,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://isjmm.github.io/2024/04/27/LC2639%E6%9F%A5%E8%AF%A2%E7%BD%91%E6%A0%BC%E5%9B%BE%E4%B8%AD%E6%AF%8F%E4%B8%80%E5%88%97%E7%9A%84%E5%AE%BD%E5%BA%A6/">
+    <link itemprop="mainEntityOfPage" href="https://isjmm.github.io/2024/06/02/LC100315%E6%89%BE%E5%88%B0%E6%8C%89%E4%BD%8D%E4%B8%8E%E6%9C%80%E6%8E%A5%E8%BF%91K%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -179,7 +179,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          LC2639查询网格图中每一列的宽度
+          LC100315找到按位与最接近K的子数组
         </h1>
 
         <div class="post-meta">
@@ -188,16 +188,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2024-04-27 16:02:07" itemprop="dateCreated datePublished" datetime="2024-04-27T16:02:07+08:00">2024-04-27</time>
+              <time title="Created: 2024-06-02 15:14:43 / Modified: 15:15:30" itemprop="dateCreated datePublished" datetime="2024-06-02T15:14:43+08:00">2024-06-02</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-05-10 20:53:30" itemprop="dateModified" datetime="2024-05-10T20:53:30+08:00">2024-05-10</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -214,7 +208,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>791</span>
+              <span>1.3k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -233,28 +227,31 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="2639-查询网格图中每一列的宽度"><a href="#2639-查询网格图中每一列的宽度" class="headerlink" title="2639. 查询网格图中每一列的宽度"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-the-width-of-columns-of-a-grid/">2639. 查询网格图中每一列的宽度</a></h2><p>难度： <font color = green> 简单 </font></p>
-<p>题目描述:</p>
+        <h2 id="100315-找到按位与最接近-K-的子数组"><a href="#100315-找到按位与最接近-K-的子数组" class="headerlink" title="100315. 找到按位与最接近 K 的子数组"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-subarray-with-bitwise-and-closest-to-k/">100315. 找到按位与最接近 K 的子数组</a></h2><p>难度：<font color = red> 困难 </font></p>
+<p>题目大意：</p>
 <blockquote>
-<p>给你一个下标从 <strong>0</strong> 开始的 <code>m x n</code> 整数矩阵 <code>grid</code> 。矩阵中某一列的宽度是这一列数字的最大 <strong>字符串长度</strong> 。</p>
+<p>给你一个数组 <code>nums</code> 和一个整数 <code>k</code> 。你需要找到 <code>nums</code> 的一个 </p>
+<p>子数组</p>
+<p>，满足子数组中所有元素按位与运算 <code>AND</code> 的值与 <code>k</code> 的 <strong>绝对差</strong> 尽可能 <strong>小</strong> 。换言之，你需要选择一个子数组 <code>nums[l..r]</code> 满足 <code>|k - (nums[l] AND nums[l + 1] ... AND nums[r])|</code> 最小。</p>
+<p>请你返回 <strong>最小</strong> 的绝对差值。</p>
+<p><strong>子数组</strong>是数组中连续的 <strong>非空</strong> 元素序列。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">示例 1：</span><br><span class="line">输入：nums = [1,2,4,5], k = 3</span><br><span class="line">输出：1</span><br><span class="line">解释：</span><br><span class="line">子数组 nums[2..3] 的按位 AND 运算值为 4 ，得到最小差值 |3 - 4| = 1 。</span><br></pre></td></tr></table></figure>
+<p><strong>提示：</strong></p>
 <ul>
-<li>比方说，如果 <code>grid = [[-10], [3], [12]]</code> ，那么唯一一列的宽度是 <code>3</code> ，因为 <code>-10</code> 的字符串长度为 <code>3</code> 。</li>
-</ul>
-<p>请你返回一个大小为 <code>n</code> 的整数数组 <code>ans</code> ，其中 <code>ans[i]</code> 是第 <code>i</code> 列的宽度。</p>
-<p>一个有 <code>len</code> 个数位的整数 <code>x</code> ，如果是非负数，那么 <strong>字符串**</strong>长度** 为 <code>len</code> ，否则为 <code>len + 1</code> 。</p>
-<p><strong>示例：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入：grid = [[-15,1,3],[15,7,12],[5,6,-2]]</span><br><span class="line">输出：[3,1,2]</span><br><span class="line">解释：</span><br><span class="line">第 0 列中，只有 -15 字符串长度为 3 。</span><br><span class="line">第 1 列中，所有整数的字符串长度都是 1 。</span><br><span class="line">第 2 列中，12 和 -2 的字符串长度都为 2 。</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>m == grid.length</code></li>
-<li><code>n == grid[i].length</code></li>
-<li><code>1 &lt;= m, n &lt;= 100</code></li>
-<li><code>-10^9 &lt;= grid[r][c] &lt;= 10^9</code></li>
+<li><code>1 &lt;= nums.length &lt;= 10^5</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 10^9</code></li>
+<li><code>1 &lt;= k &lt;= 10^9</code></li>
 </ul>
 </blockquote>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>我们只需要按照列遍历一遍，然后统计一下每个数字的长度，记录记录每一列的最大值即可</p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">findColumnWidth</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; grid)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = grid[<span class="number">0</span>].<span class="built_in">size</span>(), m = grid.<span class="built_in">size</span>();</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">res</span><span class="params">(n)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i ++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; m; j ++ ) &#123;</span><br><span class="line">                res[i] = <span class="built_in">max</span>(res[i], (<span class="type">int</span>)<span class="built_in">to_string</span>(grid[j][i]).<span class="built_in">size</span>());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>时间复杂度 :  $O(n*m)$</p>
-<p>结束了</p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>首先思考暴力方法怎么写，我们可以求出所有的子数组的按位与，然后和<code>k</code>做一个绝对差，然后对每一个值取一个最小值，那么怎么得到子数组的左右按位与呢</p>
+<p>从左往右遍历数组，假设当前遍历的数是<code>nums[i]</code>那么我们从当前位置向左边遍历，每次<code>&amp;</code>上当前位置的数字，这样就可以得到每一个子数组的按位与了，那么这样的时间复杂度是$O(n^2)$</p>
+<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><p>假设有两个数字<code>a</code>, <code>b</code>，那么如果<code>a &amp; b == a</code>，那么说明<code>a</code>是<code>b</code>的子集，同时也说明<code>b</code>是<code>a</code>的超集</p>
+<p>我们遍历还是像上面那样去遍历，变化的是：假设当前遍历的数字是<code>nums[i]</code>，向前遍历到<code>nums[j]</code>,我们将<code>nums[j] &amp; ... &amp; nums[i]</code>，这个存到<code>nums[j]</code>，此时我们可以发现，从<code>0 ~ i</code>这一段区间中，左边是右边数字的子集(因为<code>&amp;</code>只会变小)，<code>j = i - 1</code>开始</p>
+<p>如果<code>nums[j] &amp; nums[i] != nums[j]</code>,说明<code>nums[i]</code>可以继续减少</p>
+<p>如果<code>nums[j] &amp; nums[i] = nums[j]</code>，那么此时说明<code>nums[j]</code>是<code>nums[i]</code>的子集，又因为<code>nums[0 ~ j - 1]</code>是<code>nums[j]</code>的子集，那么就不用再遍历前面的元素了</p>
+<p>注意：一个元素的数组也算一个子数组</p>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minimumDifference</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = nums.<span class="built_in">size</span>(), res = INT_MAX;;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i ++) &#123;</span><br><span class="line">            <span class="type">int</span> x = nums[i];</span><br><span class="line">            res = <span class="built_in">min</span>(res, <span class="built_in">abs</span>(x - k));</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = i - <span class="number">1</span>; j &gt;= <span class="number">0</span> &amp;&amp; (nums[j] &amp; x) != nums[j]; j --) &#123;</span><br><span class="line">                nums[j] &amp;= x;</span><br><span class="line">                res = <span class="built_in">min</span>(res, <span class="built_in">abs</span>(nums[j] - k));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>时间复杂度：$O(nlogU)$, 其中 $n$ 是 $nums$ 的长度，$U=max(nums)$。根据数据范围可知，二进制数对应集合的大小不会超过 $29$，因此在 $AND$ 运算下，每个数字至多可以减少 $29$ 次。总体上看，二重循环的总循环次数等于每个数字可以减少的次数之和，即 $O(nlog⁡U)$。</p>
 
     </div>
 
@@ -273,13 +270,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2024/04/26/LC1146%E5%BF%AB%E7%85%A7%E6%95%B0%E7%BB%84/" rel="prev" title="LC1146快照数组">
-      <i class="fa fa-chevron-left"></i> LC1146快照数组
+    <a href="/2024/05/16/LC1955%E7%BB%9F%E8%AE%A1%E7%89%B9%E6%AE%8A%E5%AD%90%E5%BA%8F%E5%88%97%E7%9A%84%E6%95%B0%E7%9B%AE/" rel="prev" title="LC1955统计特殊子序列的数目">
+      <i class="fa fa-chevron-left"></i> LC1955统计特殊子序列的数目
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2024/04/27/nvim%E9%85%8D%E7%BD%AE/" rel="next" title="nvim配置">
-      nvim配置 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -338,7 +332,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2639-%E6%9F%A5%E8%AF%A2%E7%BD%91%E6%A0%BC%E5%9B%BE%E4%B8%AD%E6%AF%8F%E4%B8%80%E5%88%97%E7%9A%84%E5%AE%BD%E5%BA%A6"><span class="nav-number">1.</span> <span class="nav-text">2639. 查询网格图中每一列的宽度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-number">1.1.</span> <span class="nav-text">分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#100315-%E6%89%BE%E5%88%B0%E6%8C%89%E4%BD%8D%E4%B8%8E%E6%9C%80%E6%8E%A5%E8%BF%91-K-%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84"><span class="nav-number">1.</span> <span class="nav-text">100315. 找到按位与最接近 K 的子数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-number">1.1.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E5%8C%96"><span class="nav-number">1.2.</span> <span class="nav-text">优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.3.</span> <span class="nav-text">代码实现</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

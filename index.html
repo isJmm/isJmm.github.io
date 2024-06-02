@@ -162,6 +162,112 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://isjmm.github.io/2024/06/02/LC100315%E6%89%BE%E5%88%B0%E6%8C%89%E4%BD%8D%E4%B8%8E%E6%9C%80%E6%8E%A5%E8%BF%91K%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="RookieL">
+      <meta itemprop="description" content="简单的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="RookieL的个人博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/06/02/LC100315%E6%89%BE%E5%88%B0%E6%8C%89%E4%BD%8D%E4%B8%8E%E6%9C%80%E6%8E%A5%E8%BF%91K%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/" class="post-title-link" itemprop="url">LC100315找到按位与最接近K的子数组</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2024-06-02 15:14:43 / Modified: 15:15:30" itemprop="dateCreated datePublished" datetime="2024-06-02T15:14:43+08:00">2024-06-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LC/" itemprop="url" rel="index"><span itemprop="name">LC</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.3k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="100315-找到按位与最接近-K-的子数组"><a href="#100315-找到按位与最接近-K-的子数组" class="headerlink" title="100315. 找到按位与最接近 K 的子数组"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-subarray-with-bitwise-and-closest-to-k/">100315. 找到按位与最接近 K 的子数组</a></h2><p>难度：<font color = red> 困难 </font></p>
+<p>题目大意：</p>
+<blockquote>
+<p>给你一个数组 <code>nums</code> 和一个整数 <code>k</code> 。你需要找到 <code>nums</code> 的一个 </p>
+<p>子数组</p>
+<p>，满足子数组中所有元素按位与运算 <code>AND</code> 的值与 <code>k</code> 的 <strong>绝对差</strong> 尽可能 <strong>小</strong> 。换言之，你需要选择一个子数组 <code>nums[l..r]</code> 满足 <code>|k - (nums[l] AND nums[l + 1] ... AND nums[r])|</code> 最小。</p>
+<p>请你返回 <strong>最小</strong> 的绝对差值。</p>
+<p><strong>子数组</strong>是数组中连续的 <strong>非空</strong> 元素序列。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">示例 1：</span><br><span class="line">输入：nums = [1,2,4,5], k = 3</span><br><span class="line">输出：1</span><br><span class="line">解释：</span><br><span class="line">子数组 nums[2..3] 的按位 AND 运算值为 4 ，得到最小差值 |3 - 4| = 1 。</span><br></pre></td></tr></table></figure>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 10^5</code></li>
+<li><code>1 &lt;= nums[i] &lt;= 10^9</code></li>
+<li><code>1 &lt;= k &lt;= 10^9</code></li>
+</ul>
+</blockquote>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>首先思考暴力方法怎么写，我们可以求出所有的子数组的按位与，然后和<code>k</code>做一个绝对差，然后对每一个值取一个最小值，那么怎么得到子数组的左右按位与呢</p>
+<p>从左往右遍历数组，假设当前遍历的数是<code>nums[i]</code>那么我们从当前位置向左边遍历，每次<code>&amp;</code>上当前位置的数字，这样就可以得到每一个子数组的按位与了，那么这样的时间复杂度是$O(n^2)$</p>
+<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><p>假设有两个数字<code>a</code>, <code>b</code>，那么如果<code>a &amp; b == a</code>，那么说明<code>a</code>是<code>b</code>的子集，同时也说明<code>b</code>是<code>a</code>的超集</p>
+<p>我们遍历还是像上面那样去遍历，变化的是：假设当前遍历的数字是<code>nums[i]</code>，向前遍历到<code>nums[j]</code>,我们将<code>nums[j] &amp; ... &amp; nums[i]</code>，这个存到<code>nums[j]</code>，此时我们可以发现，从<code>0 ~ i</code>这一段区间中，左边是右边数字的子集(因为<code>&amp;</code>只会变小)，<code>j = i - 1</code>开始</p>
+<p>如果<code>nums[j] &amp; nums[i] != nums[j]</code>,说明<code>nums[i]</code>可以继续减少</p>
+<p>如果<code>nums[j] &amp; nums[i] = nums[j]</code>，那么此时说明<code>nums[j]</code>是<code>nums[i]</code>的子集，又因为<code>nums[0 ~ j - 1]</code>是<code>nums[j]</code>的子集，那么就不用再遍历前面的元素了</p>
+<p>注意：一个元素的数组也算一个子数组</p>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minimumDifference</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = nums.<span class="built_in">size</span>(), res = INT_MAX;;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i ++) &#123;</span><br><span class="line">            <span class="type">int</span> x = nums[i];</span><br><span class="line">            res = <span class="built_in">min</span>(res, <span class="built_in">abs</span>(x - k));</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = i - <span class="number">1</span>; j &gt;= <span class="number">0</span> &amp;&amp; (nums[j] &amp; x) != nums[j]; j --) &#123;</span><br><span class="line">                nums[j] &amp;= x;</span><br><span class="line">                res = <span class="built_in">min</span>(res, <span class="built_in">abs</span>(nums[j] - k));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>时间复杂度：$O(nlogU)$, 其中 $n$ 是 $nums$ 的长度，$U=max(nums)$。根据数据范围可知，二进制数对应集合的大小不会超过 $29$，因此在 $AND$ 运算下，每个数字至多可以减少 $29$ 次。总体上看，二重循环的总循环次数等于每个数字可以减少的次数之和，即 $O(nlog⁡U)$。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://isjmm.github.io/2024/05/16/LC1955%E7%BB%9F%E8%AE%A1%E7%89%B9%E6%AE%8A%E5%AD%90%E5%BA%8F%E5%88%97%E7%9A%84%E6%95%B0%E7%9B%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1331,112 +1437,6 @@ y_i = Y_i - \overline{Y}
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://isjmm.github.io/2024/04/30/LC2798%E6%BB%A1%E8%B6%B3%E7%9B%AE%E6%A0%87%E5%B7%A5%E4%BD%9C%E6%97%B6%E9%95%BF%E7%9A%84%E5%91%98%E5%B7%A5%E6%95%B0%E7%9B%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="RookieL">
-      <meta itemprop="description" content="简单的个人博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="RookieL的个人博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/04/30/LC2798%E6%BB%A1%E8%B6%B3%E7%9B%AE%E6%A0%87%E5%B7%A5%E4%BD%9C%E6%97%B6%E9%95%BF%E7%9A%84%E5%91%98%E5%B7%A5%E6%95%B0%E7%9B%AE/" class="post-title-link" itemprop="url">LC2798满足目标工作时长的员工数目</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2024-04-30 10:03:27" itemprop="dateCreated datePublished" datetime="2024-04-30T10:03:27+08:00">2024-04-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-05-10 20:53:25" itemprop="dateModified" datetime="2024-05-10T20:53:25+08:00">2024-05-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LC/" itemprop="url" rel="index"><span itemprop="name">LC</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>649</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="2798-满足目标工作时长的员工数目"><a href="#2798-满足目标工作时长的员工数目" class="headerlink" title="2798. 满足目标工作时长的员工数目"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/number-of-employees-who-met-the-target/">2798. 满足目标工作时长的员工数目</a></h2><p>难度 ： <font color = green> 简单 </font></p>
-<p>题目大意：</p>
-<blockquote>
-<p>公司里共有 <code>n</code> 名员工，按从 <code>0</code> 到 <code>n - 1</code> 编号。每个员工 <code>i</code> 已经在公司工作了 <code>hours[i]</code> 小时。</p>
-<p>公司要求每位员工工作 <strong>至少</strong> <code>target</code> 小时。</p>
-<p>给你一个下标从 <strong>0</strong> 开始、长度为 <code>n</code> 的非负整数数组 <code>hours</code> 和一个非负整数 <code>target</code> 。</p>
-<p>请你用整数表示并返回工作至少 <code>target</code> 小时的员工数。</p>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">输入：hours = [0,1,2,3,4], target = 2</span><br><span class="line">输出：3</span><br><span class="line">解释：公司要求每位员工工作至少 2 小时。</span><br><span class="line">- 员工 0 工作 0 小时，不满足要求。</span><br><span class="line">- 员工 1 工作 1 小时，不满足要求。</span><br><span class="line">- 员工 2 工作 2 小时，满足要求。</span><br><span class="line">- 员工 3 工作 3 小时，满足要求。</span><br><span class="line">- 员工 4 工作 4 小时，满足要求。</span><br><span class="line">共有 3 位满足要求的员工。</span><br></pre></td></tr></table></figure>
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>1 &lt;= n == hours.length &lt;= 50</code></li>
-<li><code>0 &lt;= hours[i], target &lt;= 10^5</code></li>
-</ul>
-</blockquote>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>显然是一个模拟题，直接遍历数组中的元素然后和<code>target</code>判断相对大小即可</p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">numberOfEmployeesWhoMetTarget</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; hours, <span class="type">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span>&amp; x : hours) &#123;</span><br><span class="line">            <span class="keyword">if</span> (x &gt;= target) &#123;</span><br><span class="line">                res ++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>时间复杂度： $O(n)$</p>
-<p>结束了</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1506,7 +1506,7 @@ y_i = Y_i - \overline{Y}
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1555,12 +1555,12 @@ y_i = Y_i - \overline{Y}
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">31k</span>
+    <span title="Symbols count total">33k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">28 mins.</span>
+    <span title="Reading time total">30 mins.</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
   </div>
